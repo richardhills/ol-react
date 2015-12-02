@@ -1,0 +1,14 @@
+{
+  "name": "ol-react",
+  "version": "0.0.1",
+  "description": "React interface for openlayers",
+  "main": "feature.js",
+  "scripts": {
+  },
+  "author": "richard.hills@gmail.com",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.2",
+    "openlayers": "^3.11.1"
+  }
+}
