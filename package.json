@@ -6,6 +6,13 @@
   "scripts": {
   },
   "author": "richard.hills@gmail.com",
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "babel": "^4.6.0"
+  },
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.2",
