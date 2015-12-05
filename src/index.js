@@ -1,7 +1,10 @@
-export {default as geom} from './geom';
-export {default as interaction} from './interaction';
-export {default as layer} from './layer';
-export {default as source} from './source';
-export {default as feature} from './feature';
-export {default as map} from './map';
-export {default as view} from './view';
+import * as geom from './geom';
+import * as interaction from './interaction';
+import * as layer from './layer';
+import * as source from './source';
+
+export { geom, interaction, layer, source};
+
+export {default as Feature} from './feature';
+export {default as Map} from './map';
+export {default as View} from './view';

@@ -2,7 +2,7 @@
   "name": "ol-react",
   "version": "0.0.2",
   "description": "React interface for openlayers",
-  "main": "feature.js",
+  "main": "lib/index.js",
   "scripts": {
   },
   "author": "richard.hills@gmail.com",
@@ -11,7 +11,8 @@
     "prepublish": "npm run compile"
   },
   "devDependencies": {
-    "babel": "^4.6.0"
+    "babel": "^4.6.0",
+    "babel-loader": "^6.2.0"
   },
   "dependencies": {
     "react": "^0.14.0",
