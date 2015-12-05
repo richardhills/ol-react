@@ -19,4 +19,4 @@ The goal is to be able to write applications using OpenLayers maps in a declarat
 
 To understand what each element does, read the [OpenLayers API documentation](http://openlayers.org/en/v3.11.2/apidoc/).
 
-It's early days! If you're familiar with react and/or openlayers and are interested in helping, please get in touch.
+It's early days! If you're familiar with react and/or openlayers and are interested in helping, please get in touch. Available on [github](https://github.com/richardhills/ol-react) and [npm](https://www.npmjs.com/package/ol-react).
