@@ -8,13 +8,22 @@ export default class Map extends React.Component {
   constructor(props) {
     super(props);
     this.map = new ol.Map({
-      interactions: [new interaction.DragPan(this.onDrag.bind(this))]
+      interactions: [
+        new interaction.DragPan(this.onDrag.bind(this)),
+        new interaction.MouseWheelZoom(this.onZoom.bind(this))
+      ]
     });
   }
 
   onDrag(newCenter) {
     this.props.actions.onNavigation({
       center: newCenter
+    });
+  }
+
+  onZoom(newResolution) {
+    this.props.actions.onNavigation({
+      resolution: newResolution
     });
   }
   
