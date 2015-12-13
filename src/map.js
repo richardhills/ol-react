@@ -10,7 +10,8 @@ export default class Map extends React.Component {
     this.map = new ol.Map({
       interactions: [
         new interaction.DragPan(this.onDrag.bind(this)),
-        new interaction.MouseWheelZoom(this.onZoom.bind(this))
+        new interaction.MouseWheelZoom(this.onZoom.bind(this)),
+        new interaction.Draw(this.onDrawEnd.bind(this))
       ]
     });
   }
@@ -26,7 +27,11 @@ export default class Map extends React.Component {
       resolution: newResolution
     });
   }
-  
+
+  onDrawEnd(newFeature) {
+    this.props.actions.onNewFeature(newFeature);
+  }
+
   componentDidMount() {
     this.map.setTarget(this.refs.us);
   }
