@@ -6,6 +6,7 @@ export default class Feature extends OLComponent {
   constructor(props) {
     super(props);
     this.feature = new ol.Feature({});
+    this.feature.setId(props.id);
     this.updateFromProps(props);
   }
 
@@ -45,7 +46,8 @@ export default class Feature extends OLComponent {
 
 Feature.propTypes = {
   style: React.PropTypes.object,
-  children: React.PropTypes.element
+  children: React.PropTypes.element,
+  id: React.PropTypes.any.isRequired
 }
 
 Feature.contextTypes = {

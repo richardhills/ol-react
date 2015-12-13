@@ -33,7 +33,7 @@ export default class Map extends React.Component {
   }
 
   componentDidMount() {
-    this.map.setTarget(this.refs.us);
+    this.map.setTarget(this.refs.target);
   }
 
   getChildContext() {
@@ -45,7 +45,7 @@ export default class Map extends React.Component {
   render() {
     return (
       <div>
-        <div ref="us">
+        <div ref="target">
         </div>
         <div>
           {this.props.children}

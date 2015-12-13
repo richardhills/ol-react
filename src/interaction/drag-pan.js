@@ -27,17 +27,21 @@ export default class DragPan extends ol.interaction.Pointer {
   }
 
   handleDragEvent(mapBrowserEvent) {
-    this.dragTo(
-      mapBrowserEvent.coordinate,
-      mapBrowserEvent.map.getView().getCenter()
-    );
+    if(this.pinnedUnderMouse) {
+      this.dragTo(
+        mapBrowserEvent.coordinate,
+        mapBrowserEvent.map.getView().getCenter()
+      );
+    }
   }
-
+    
   handleUpEvent(mapBrowserEvent) {
-    this.dragTo(
-      mapBrowserEvent.coordinate,
-      mapBrowserEvent.map.getView().getCenter()
-    );
+    if(this.pinnedUnderMouse) {
+      this.dragTo(
+        mapBrowserEvent.coordinate,
+        mapBrowserEvent.map.getView().getCenter()
+      );
+    }
     delete this.pinnedUnderMouse;
     return true;
   }

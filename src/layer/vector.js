@@ -16,7 +16,8 @@ export default class Vector extends OLComponent {
 
   getChildContext() {
     return {
-      layer: this.layer
+      layer: this.layer,
+      map: this.context.map
     }
   }
   
@@ -33,5 +34,6 @@ Vector.contextTypes = {
 }
 
 Vector.childContextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Vector)
+  layer: React.PropTypes.instanceOf(ol.layer.Vector),
+  map: React.PropTypes.instanceOf(ol.Map)
 }

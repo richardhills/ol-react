@@ -10,7 +10,7 @@ export default class LineString extends OLComponent {
   }
 
   updateFromProps(props) {
-    this.geometry.setCoordinates(this.props.children);
+    this.geometry.setCoordinates(props.children);
   }
 
   componentDidMount() {
