@@ -8,8 +8,8 @@
   "author": "richard.hills@gmail.com",
   "scripts": {
     "compile": "babel -d lib/ src/",
-	"preinstall": "if [ ! -d lib/ ]; then npm run prepublish; fi",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
+	"postinstall": "node scripts/postinstall.js"
   },
   "devDependencies": {
     "babel": "^4.6.0",
