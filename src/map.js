@@ -17,19 +17,25 @@ export default class Map extends React.Component {
   }
 
   onDrag(newCenter) {
-    this.props.actions.onNavigation({
-      center: newCenter
-    });
+    if (this.props.actions.onNavigation) {
+      this.props.actions.onNavigation({
+        center: newCenter
+      });
+    }
   }
 
   onZoom(newResolution) {
-    this.props.actions.onNavigation({
-      resolution: newResolution
-    });
+    if (this.props.actions.onNavigation) {
+      this.props.actions.onNavigation({
+        resolution: newResolution
+      });
+    }
   }
 
   onDrawEnd(newFeature) {
-    this.props.actions.onNewFeature(newFeature);
+    if (this.props.actions.onNewFeature) {
+      this.props.actions.onNewFeature(newFeature);
+    }
   }
 
   componentDidMount() {
@@ -63,6 +69,10 @@ Map.propTypes = {
     React.PropTypes.element,
   ]),
   actions: React.PropTypes.object.isRequired
+}
+
+Map.defaultProps = {
+  actions: {}
 }
 
 Map.childContextTypes = {

@@ -24,7 +24,7 @@ export default class Vector extends OLComponent {
     this.context.map.addInteraction(
       new interaction.Modify({
         features: this.source.getFeaturesCollection(),
-        onModifyEnd: this.props.actions.onModifyEnd,
+        onModifyEnd: this.props.actions ? this.props.actions.onModifyEnd : null,
       })
     );
   }
@@ -32,6 +32,10 @@ export default class Vector extends OLComponent {
 
 Vector.propTypes = {
   actions: React.PropTypes.object.isRequired
+}
+
+Vector.defaultProps = {
+  actions: {}
 }
 
 Vector.contextTypes = {
