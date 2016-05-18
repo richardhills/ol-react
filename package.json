@@ -8,6 +8,7 @@
   "author": "richard.hills@gmail.com",
   "scripts": {
     "compile": "babel -d lib/ src/",
+	"preinstall": "if [ ! -d lib/ ]; then npm run prepublish; fi",
     "prepublish": "npm run compile"
   },
   "devDependencies": {
@@ -16,7 +17,7 @@
   },
   "peerDependencies": {
     "react": "^15.0.1",
-	"react-dom": "^15.0.1"
+    "react-dom": "^15.0.1"
   },
   "dependencies": {
     "openlayers": "^3.15.1"
