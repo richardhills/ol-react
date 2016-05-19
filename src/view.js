@@ -26,7 +26,11 @@ export default class View extends OLComponent {
 
   updateFromProps(props) {
     this.view.setCenter(props.center);
-    this.view.setResolution(props.resolution);
+    if (typeof props.resolution !== 'undefined') {
+      this.view.setResolution(props.resolution);
+    } else if (typeof props.zoom !== 'undefined') {
+      this.view.setZoom(props.zoom);
+    }
   }
 
   componentDidMount() {
@@ -40,7 +44,8 @@ export default class View extends OLComponent {
 
 View.propTypes = {
 	center: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
-	resolution: React.PropTypes.number.isRequired,
+	resolution: React.PropTypes.number,
+	zoom: React.PropTypes.number,
 	onNavigation: React.PropTypes.func
 }
 
