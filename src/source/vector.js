@@ -21,21 +21,13 @@ export default class Vector extends OLComponent {
 
   componentDidMount() {
     this.context.layer.setSource(this.source);
-    this.context.map.addInteraction(
-      new interaction.Modify({
-        features: this.source.getFeaturesCollection(),
-        onModifyEnd: this.props.actions ? this.props.actions.onModifyEnd : null,
-      })
-    );
   }
 }
 
 Vector.propTypes = {
-  actions: React.PropTypes.object.isRequired
 }
 
 Vector.defaultProps = {
-  actions: {}
 }
 
 Vector.contextTypes = {
