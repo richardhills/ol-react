@@ -7,35 +7,7 @@ import * as interaction from './interaction';
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.map = new ol.Map({
-      interactions: [
-        new interaction.DragPan(this.onDrag.bind(this)),
-        new interaction.MouseWheelZoom(this.onZoom.bind(this)),
-        new interaction.Draw(this.onDrawEnd.bind(this))
-      ]
-    });
-  }
-
-  onDrag(newCenter) {
-    if (this.props.actions.onNavigation) {
-      this.props.actions.onNavigation({
-        center: newCenter
-      });
-    }
-  }
-
-  onZoom(newResolution) {
-    if (this.props.actions.onNavigation) {
-      this.props.actions.onNavigation({
-        resolution: newResolution
-      });
-    }
-  }
-
-  onDrawEnd(newFeature) {
-    if (this.props.actions.onNewFeature) {
-      this.props.actions.onNewFeature(newFeature);
-    }
+    this.map = new ol.Map({})
   }
 
   componentDidMount() {
@@ -67,8 +39,7 @@ Map.propTypes = {
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.element),
     React.PropTypes.element,
-  ]),
-  actions: React.PropTypes.object.isRequired
+  ])
 }
 
 Map.defaultProps = {
