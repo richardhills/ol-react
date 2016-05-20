@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile",
-	"postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js"
   },
   "devDependencies": {
     "babel": "^4.6.0",
