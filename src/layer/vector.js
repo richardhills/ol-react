@@ -1,8 +1,8 @@
 import React from 'react';
 import ol from 'openlayers';
-import OLComponent from '../ol-component';
+import OLContainer from '../ol-container';
 
-export default class Vector extends OLComponent {
+export default class Vector extends OLContainer {
   constructor(props) {
     super(props);
     this.layer = new ol.layer.Vector({
