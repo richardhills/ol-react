@@ -10,14 +10,10 @@ export default class Modify extends OLInteraction {
   }
 }
 
-Modify.propTypes = {
+Modify.propTypes = Object.assign({}, OLInteraction.propTypes, {
   modifyend: React.PropTypes.func,
   modifystart: React.PropTypes.func,
   features: React.PropTypes.instanceOf(ol.Collection).isRequired
-}
-
-Modify.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
-}
+})
 
 Modify.olEvents = ["modifyend", "modifystart"]

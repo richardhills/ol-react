@@ -7,7 +7,3 @@ export default class MouseWheelZoom extends OLInteraction {
     return new ol.interaction.MouseWheelZoom()
   }
 }
-
-MouseWheelZoom.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
-}

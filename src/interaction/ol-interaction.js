@@ -1,3 +1,5 @@
+import React from 'react';
+import ol from 'openlayers';
 import OLComponent from '../ol-component';
 
 export default class OLInteraction extends OLComponent {
@@ -8,22 +10,32 @@ export default class OLInteraction extends OLComponent {
   }
 
   componentDidMount () {
-    this.context.map.addInteraction(this.interaction)
+    this.updateActiveState_(this.props)
     this.updateEventHandlersFromProps_(this.props)
+    this.context.map.addInteraction(this.interaction)
   }
 
   componentWillReceiveProps (newProps) {
+    this.updateActiveState_(newProps)
     this.updateEventHandlersFromProps_(newProps, this.props)
   }
 
   componentWillUnmount () {
-    this.updateEventHandlersFromProps_({})
     this.context.map.removeInteraction(this.interaction)
+    this.updateEventHandlersFromProps_({})
   }
 
   createInteraction (props) {
     throw new TypeError('You must override createInteraction() in classes derived ' +
                         'from OLInteraction')
+  }
+
+  updateActiveState_ (props) {
+    if (props.hasOwnProperty("active")) {
+      this.interaction.setActive(props.active)
+    } else {
+      this.interaction.setActive(true)
+    }
   }
 
   updateEventHandler_ (name, handler) {
@@ -47,4 +59,16 @@ export default class OLInteraction extends OLComponent {
       }
     }
   }
+}
+
+OLInteraction.propTypes = {
+  active: React.PropTypes.bool.isRequired
+}
+
+OLInteraction.defaultProps = {
+  active: true
+}
+
+OLInteraction.contextTypes = {
+  map: React.PropTypes.instanceOf(ol.Map)
 }

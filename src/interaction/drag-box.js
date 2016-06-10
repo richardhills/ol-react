@@ -8,14 +8,10 @@ export default class DragBox extends OLInteraction {
   }
 }
 
-DragBox.propTypes = {
+DragBox.propTypes = Object.assign({}, OLInteraction.propTypes, {
   boxdrag: React.PropTypes.func,
   boxend: React.PropTypes.func,
   boxstart: React.PropTypes.func
-}
-
-DragBox.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
-}
+})
 
 DragBox.olEvents = ["boxdrag", "boxend", "boxstart"]

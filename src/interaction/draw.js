@@ -10,14 +10,10 @@ export default class Draw extends OLInteraction {
   }
 }
 
-Draw.propTypes = {
+Draw.propTypes = Object.assign({}, OLInteraction.propTypes, {
   drawend: React.PropTypes.func,
   drawstart: React.PropTypes.func,
   type: React.PropTypes.instanceOf(ol.geom.GeometryType).isRequired
-}
-
-Draw.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
-}
+})
 
 Draw.olEvents = ["drawend", "drawstart"]

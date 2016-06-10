@@ -8,12 +8,8 @@ export default class Select extends OLInteraction {
   }
 }
 
-Select.propTypes = {
+Select.propTypes = Object.assign({}, OLInteraction.propTypes, {
   select: React.PropTypes.func
-}
-
-Select.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
-}
+})
 
 Select.olEvents = ["select"]
