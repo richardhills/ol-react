@@ -3,8 +3,8 @@ import ol from 'openlayers';
 import OLComponent from './ol-component';
 
 export default class Map extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.map = new ol.Map({
       loadTilesWhileAnimating: props.loadTilesWhileAnimating,
       loadTilesWhileInteracting: props.loadTilesWhileInteracting,
@@ -12,17 +12,21 @@ export default class Map extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.map.setTarget(this.refs.target);
+  componentDidMount () {
+    this.map.setTarget(this.refs.target)
   }
 
-  getChildContext() {
+  componentWillUnmount () {
+    this.map.setTarget(undefined)
+  }
+
+  getChildContext () {
     return {
       map: this.map
-    };
+    }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <div ref="target">
@@ -32,7 +36,7 @@ export default class Map extends React.Component {
           {this.props.view}
         </div>
       </div>
-    );
+    )
   }
 }
 
