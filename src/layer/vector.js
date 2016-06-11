@@ -3,30 +3,29 @@ import ol from 'openlayers';
 import OLContainer from '../ol-container';
 
 export default class Vector extends OLContainer {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.layer = new ol.layer.Vector({
-      style: new ol.style.Style({
-        fill: new ol.style.Fill({
-          color: [0, 0, 255, 0.6]
-        })
-      })
-    });
+      updateWhileAnimating: props.updateWhileAnimating,
+      updateWhileInteracting: props.updateWhileInteracting
+    })
   }
 
-  getChildContext() {
+  getChildContext () {
     return {
       layer: this.layer,
       map: this.context.map
     }
   }
   
-  componentDidMount() {
-    this.context.map.addLayer(this.layer);
+  componentDidMount () {
+    this.context.map.addLayer(this.layer)
   }
 }
 
 Vector.propTypes = {
+  updateWhileAnimating: React.PropTypes.bool,
+  updateWhileInteracting: React.PropTypes.bool
 }
 
 Vector.contextTypes = {
