@@ -1,11 +1,11 @@
-import React from 'react';
-import ol from 'openlayers';
-import OLContainer from '../ol-container';
+import React from 'react'
+import ol from 'openlayers'
+import OLContainer from '../ol-container'
 
 export default class Tile extends OLContainer {
   constructor(props) {
-    super(props);
-    this.layer = new ol.layer.Tile()
+    super(props)
+    this.layer = new ol.layer.Tile({visible: this.props.visible})
   }
 
   getChildContext() {
@@ -15,7 +15,11 @@ export default class Tile extends OLContainer {
   }
   
   componentDidMount() {
-    this.context.map.addLayer(this.layer);
+    this.context.map.addLayer(this.layer)
+  }
+  
+  componentWillReceiveProps(newProps) {
+    this.layer.setVisible(newProps.visible)
   }
 }
 
