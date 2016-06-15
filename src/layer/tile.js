@@ -5,7 +5,9 @@ import OLContainer from '../ol-container'
 export default class Tile extends OLContainer {
   constructor (props) {
     super(props)
-    this.layer = new ol.layer.Tile({visible: this.props.visible})
+    this.layer = new ol.layer.Tile({
+      visible: this.props.visible
+    })
   }
   
   getChildContext () {
