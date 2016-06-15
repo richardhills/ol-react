@@ -5,8 +5,8 @@ import OLComponent from '../ol-component'
 export default class BingMaps extends OLComponent {
   constructor(props) {
     let spreadedProps = Object.assign({}, props)
-    spreadedProps.key = spreadedProps.APIkey
-    delete spreadedProps.APIkey
+    spreadedProps.key = spreadedProps.apiKey
+    delete spreadedProps.apiKey
     
     super(props)
     
@@ -19,6 +19,7 @@ export default class BingMaps extends OLComponent {
 }
 
 BingMaps.propTypes = {
+  apiKey: React.PropTypes.string.isRequired
 }
 
 BingMaps.contextTypes = {
