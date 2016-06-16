@@ -14,6 +14,10 @@ export default class Map extends React.Component {
 
   componentDidMount () {
     this.map.setTarget(this.refs.target)
+    
+    if (this.props.focusOnMount) {
+      this.focus()
+    }
   }
 
   componentWillUnmount () {
@@ -38,6 +42,12 @@ export default class Map extends React.Component {
       </div>
     )
   }
+  
+  focus () {
+    const viewport = this.map.getViewport()
+    viewport.tabIndex = 0
+    viewport.focus()
+  }
 }
 
 Map.propTypes = {
@@ -45,6 +55,7 @@ Map.propTypes = {
   loadTilesWhileInteracting: React.PropTypes.bool,
   view: React.PropTypes.element.isRequired,
   useDefaultInteractions: React.PropTypes.bool.isRequired,
+  focusOnMount: React.PropTypes.bool.isRequired,
 
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.element),
@@ -53,7 +64,8 @@ Map.propTypes = {
 }
 
 Map.defaultProps = {
-  useDefaultInteractions: true
+  useDefaultInteractions: true,
+  focusOnMount: false
 }
 
 Map.childContextTypes = {
