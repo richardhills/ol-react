@@ -8,7 +8,8 @@ export default class Map extends React.Component {
     this.map = new ol.Map({
       loadTilesWhileAnimating: props.loadTilesWhileAnimating,
       loadTilesWhileInteracting: props.loadTilesWhileInteracting,
-      interactions: props.useDefaultInteractions ? ol.interaction.defaults() : []
+      interactions: props.useDefaultInteractions ? ol.interaction.defaults() : [],
+      controls: props.useDefaultControls ? ol.control.defaults() : []
     })
   }
 
@@ -55,6 +56,7 @@ Map.propTypes = {
   loadTilesWhileInteracting: React.PropTypes.bool,
   view: React.PropTypes.element.isRequired,
   useDefaultInteractions: React.PropTypes.bool.isRequired,
+  useDefaultControls: React.PropTypes.bool.isRequired,
   focusOnMount: React.PropTypes.bool.isRequired,
 
   children: React.PropTypes.oneOfType([
@@ -65,6 +67,7 @@ Map.propTypes = {
 
 Map.defaultProps = {
   useDefaultInteractions: true,
+  useDefaultControls: true,
   focusOnMount: false
 }
 
