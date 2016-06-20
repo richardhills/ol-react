@@ -33,7 +33,7 @@ export default class Map extends React.Component {
 
   render () {
     return (
-      <div>
+      <div style={this.props.style}>
         <div ref="target">
         </div>
         <div>
