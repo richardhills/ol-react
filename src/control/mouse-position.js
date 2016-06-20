@@ -15,7 +15,10 @@ export default class MousePosition extends OLControl {
 
 MousePosition.propTypes = Object.assign({}, OLControl.propTypes, {
   className: React.PropTypes.string,
-  coordinateFormat: React.PropTypes.instanceOf(ol.CoordinateFormatType),
-  projection: React.PropTypes.instanceOf(ol.proj.ProjectionLike),
+  coordinateFormat: React.PropTypes.func,
+  projection: React.PropTypes.oneOfType([
+    React.PropTypes.instanceOf(ol.proj.Projection),
+    React.PropTypes.string
+  ]),
   undefinedHTML: React.PropTypes.string
 })
