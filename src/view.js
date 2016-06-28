@@ -8,23 +8,22 @@ export default class View extends OLComponent {
     this.view = new ol.View();
     //this.view.on("change:center", this.onCenterChanged, this);
     //this.view.on("change:resolution", this.onResolutionChanged, this);
-    this.updateFromProps(props);
   }
 
-  onCenterChanged(event) {
+  onCenterChanged (event) {
     this.props.onNavigation({
       center: this.view.getCenter()
-    });
+    })
   }
 
-  onResolutionChanged(event) {
+  onResolutionChanged (event) {
     this.props.onNavigation({
       resolution: this.view.getResolution()
-    });
-    return true;
+    })
+    return true
   }
 
-  updateFromProps(props) {
+  updateCenterAndResolutionFromProps_ (props) {
     this.view.setCenter(props.center);
     if (typeof props.resolution !== 'undefined') {
       this.view.setResolution(props.resolution);
@@ -33,12 +32,21 @@ export default class View extends OLComponent {
     }
   }
 
-  componentDidMount() {
-    this.context.map.setView(this.view);
+  updateFromProps_ (props, isMounting) {
+    if (isMounting) {
+      // Update the center and the resolution of the view only when it is
+      // mounted the first time but not when the properties are updated
+      this.updateCenterAndResolutionFromProps_(props)
+    }
   }
 
-  componentWillReceiveProps(newProps) {
-    this.updateFromProps(newProps);
+  componentDidMount () {
+    this.context.map.setView(this.view)
+    this.updateFromProps_(this.props, /* isMounting = */ true)
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.updateFromProps_(newProps);
   }
 }
 

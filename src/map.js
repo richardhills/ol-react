@@ -1,56 +1,39 @@
 import React from 'react';
-import {findDOMNode} from 'react-dom';
 import ol from 'openlayers';
 import OLComponent from './ol-component';
-import * as interaction from './interaction';
 
 export default class Map extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.map = new ol.Map({
-      interactions: [
-        new interaction.DragPan(this.onDrag.bind(this)),
-        new interaction.MouseWheelZoom(this.onZoom.bind(this)),
-        new interaction.Draw(this.onDrawEnd.bind(this))
-      ]
-    });
+      loadTilesWhileAnimating: props.loadTilesWhileAnimating,
+      loadTilesWhileInteracting: props.loadTilesWhileInteracting,
+      interactions: props.useDefaultInteractions ? ol.interaction.defaults() : [],
+      controls: props.useDefaultControls ? ol.control.defaults() : []
+    })
   }
 
-  onDrag(newCenter) {
-    if (this.props.actions.onNavigation) {
-      this.props.actions.onNavigation({
-        center: newCenter
-      });
+  componentDidMount () {
+    this.map.setTarget(this.refs.target)
+    
+    if (this.props.focusOnMount) {
+      this.focus()
     }
   }
 
-  onZoom(newResolution) {
-    if (this.props.actions.onNavigation) {
-      this.props.actions.onNavigation({
-        resolution: newResolution
-      });
-    }
+  componentWillUnmount () {
+    this.map.setTarget(undefined)
   }
 
-  onDrawEnd(newFeature) {
-    if (this.props.actions.onNewFeature) {
-      this.props.actions.onNewFeature(newFeature);
-    }
-  }
-
-  componentDidMount() {
-    this.map.setTarget(this.refs.target);
-  }
-
-  getChildContext() {
+  getChildContext () {
     return {
       map: this.map
-    };
+    }
   }
 
-  render() {
+  render () {
     return (
-      <div>
+      <div style={this.props.style}>
         <div ref="target">
         </div>
         <div>
@@ -58,21 +41,34 @@ export default class Map extends React.Component {
           {this.props.view}
         </div>
       </div>
-    );
+    )
+  }
+  
+  focus () {
+    const viewport = this.map.getViewport()
+    viewport.tabIndex = 0
+    viewport.focus()
   }
 }
 
 Map.propTypes = {
+  loadTilesWhileAnimating: React.PropTypes.bool,
+  loadTilesWhileInteracting: React.PropTypes.bool,
   view: React.PropTypes.element.isRequired,
+  useDefaultInteractions: React.PropTypes.bool.isRequired,
+  useDefaultControls: React.PropTypes.bool.isRequired,
+  focusOnMount: React.PropTypes.bool.isRequired,
+
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.element),
     React.PropTypes.element,
-  ]),
-  actions: React.PropTypes.object.isRequired
+  ])
 }
 
 Map.defaultProps = {
-  actions: {}
+  useDefaultInteractions: true,
+  useDefaultControls: true,
+  focusOnMount: false
 }
 
 Map.childContextTypes = {
