@@ -9,17 +9,17 @@ export default class Tile extends OLContainer {
       visible: this.props.visible
     })
   }
-  
+
   getChildContext () {
     return {
       layer: this.layer
     }
   }
-  
+
   componentDidMount () {
     this.context.map.addLayer(this.layer)
   }
-  
+
   componentWillReceiveProps (newProps) {
     this.layer.setVisible(newProps.visible)
   }
