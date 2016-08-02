@@ -8,6 +8,7 @@ export default class Tile extends OLContainer {
     this.layer = new ol.layer.Tile({
       visible: this.props.visible
     })
+    this.layer.setZIndex(props.zIndex)
   }
 
   getChildContext () {
@@ -22,6 +23,7 @@ export default class Tile extends OLContainer {
 
   componentWillReceiveProps (newProps) {
     this.layer.setVisible(newProps.visible)
+    this.layer.setZIndex(newProps.zIndex)
   }
 
   componentWillUnmount () {
@@ -30,7 +32,8 @@ export default class Tile extends OLContainer {
 }
 
 Tile.propTypes = {
-  visible: React.PropTypes.bool
+  visible: React.PropTypes.bool,
+  zIndex: React.PropTypes.number
 }
 
 Tile.defaultProps = {

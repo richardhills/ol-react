@@ -10,6 +10,7 @@ export default class Vector extends OLContainer {
       updateWhileInteracting: props.updateWhileInteracting,
       visible: this.props.visible
     })
+    this.layer.setZIndex(props.zIndex)
   }
 
   getChildContext () {
@@ -25,6 +26,7 @@ export default class Vector extends OLContainer {
 
   componentWillReceiveProps (newProps) {
     this.layer.setVisible(newProps.visible)
+    this.layer.setZIndex(newProps.zIndex)
   }
 
   componentWillUnmount () {
@@ -35,7 +37,8 @@ export default class Vector extends OLContainer {
 Vector.propTypes = {
   updateWhileAnimating: React.PropTypes.bool,
   updateWhileInteracting: React.PropTypes.bool,
-  visible: React.PropTypes.bool
+  visible: React.PropTypes.bool,
+  zIndex: React.PropTypes.number
 }
 
 Vector.defaultProps = {
