@@ -26,6 +26,10 @@ export default class Vector extends OLContainer {
   componentWillReceiveProps (newProps) {
     this.layer.setVisible(newProps.visible)
   }
+
+  componentWillUnmount () {
+    this.context.map.removeLayer(this.layer)
+  }
 }
 
 Vector.propTypes = {

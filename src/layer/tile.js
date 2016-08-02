@@ -23,6 +23,10 @@ export default class Tile extends OLContainer {
   componentWillReceiveProps (newProps) {
     this.layer.setVisible(newProps.visible)
   }
+
+  componentWillUnmount () {
+    this.context.map.removeLayer(this.layer)
+  }
 }
 
 Tile.propTypes = {
