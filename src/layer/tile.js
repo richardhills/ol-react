@@ -8,25 +8,32 @@ export default class Tile extends OLContainer {
     this.layer = new ol.layer.Tile({
       visible: this.props.visible
     })
+    this.layer.setZIndex(props.zIndex)
   }
-  
+
   getChildContext () {
     return {
       layer: this.layer
     }
   }
-  
+
   componentDidMount () {
     this.context.map.addLayer(this.layer)
   }
-  
+
   componentWillReceiveProps (newProps) {
     this.layer.setVisible(newProps.visible)
+    this.layer.setZIndex(newProps.zIndex)
+  }
+
+  componentWillUnmount () {
+    this.context.map.removeLayer(this.layer)
   }
 }
 
 Tile.propTypes = {
-  visible: React.PropTypes.bool
+  visible: React.PropTypes.bool,
+  zIndex: React.PropTypes.number
 }
 
 Tile.defaultProps = {

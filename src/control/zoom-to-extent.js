@@ -1,4 +1,5 @@
 import React from 'react';
+import OLPropTypes from '../ol-proptypes'
 import ol from 'openlayers';
 import OLControl from './ol-control';
 
@@ -15,11 +16,7 @@ export default class ZoomToExtent extends OLControl {
 
 ZoomToExtent.propTypes = Object.assign({}, OLControl.propTypes, {
   className: React.PropTypes.string,
-  extent: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.number),
-    React.PropTypes.instanceOf(ol.Extent)
-    // this is written in the documentation, but ol.Extent does not actually exist
-  ]),
+  extent: OLPropTypes.Extent,
   label: React.PropTypes.node,
   tipLabel: React.PropTypes.string
 })

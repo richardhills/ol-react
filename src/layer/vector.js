@@ -7,8 +7,10 @@ export default class Vector extends OLContainer {
     super(props)
     this.layer = new ol.layer.Vector({
       updateWhileAnimating: props.updateWhileAnimating,
-      updateWhileInteracting: props.updateWhileInteracting
+      updateWhileInteracting: props.updateWhileInteracting,
+      visible: this.props.visible
     })
+    this.layer.setZIndex(props.zIndex)
   }
 
   getChildContext () {
@@ -17,15 +19,30 @@ export default class Vector extends OLContainer {
       map: this.context.map
     }
   }
-  
+
   componentDidMount () {
     this.context.map.addLayer(this.layer)
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.layer.setVisible(newProps.visible)
+    this.layer.setZIndex(newProps.zIndex)
+  }
+
+  componentWillUnmount () {
+    this.context.map.removeLayer(this.layer)
   }
 }
 
 Vector.propTypes = {
   updateWhileAnimating: React.PropTypes.bool,
-  updateWhileInteracting: React.PropTypes.bool
+  updateWhileInteracting: React.PropTypes.bool,
+  visible: React.PropTypes.bool,
+  zIndex: React.PropTypes.number
+}
+
+Vector.defaultProps = {
+  visible: true
 }
 
 Vector.contextTypes = {

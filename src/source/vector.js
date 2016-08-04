@@ -1,16 +1,16 @@
-import React from 'react';
-import ol from 'openlayers';
-import OLComponent from '../ol-component';
-import * as interaction from '../interaction';
+import React from 'react'
+import ol from 'openlayers'
+import OLComponent from '../ol-component'
+import * as interaction from '../interaction'
 
 export default class Vector extends OLComponent {
   constructor(props) {
-    super(props);
+    super(props)
     this.source = new ol.source.Vector(
       Object.assign({
         features: new ol.Collection()
       }, this.props)
-    );
+    )
   }
 
   getChildContext() {
@@ -20,8 +20,10 @@ export default class Vector extends OLComponent {
   }
 
   componentDidMount() {
-    this.context.layer.setSource(this.source);
+    this.context.layer.setSource(this.source)
   }
+
+  componentWillUnmount () {}
 }
 
 Vector.propTypes = {
