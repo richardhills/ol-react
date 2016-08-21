@@ -4,7 +4,7 @@ The goal is to be able to write applications using OpenLayers maps in a declarat
 
     <Map view=<View resolution={10000} center={[0, 0]}/>>
       <layer.Tile>
-        <source.MapQuest layer="osm" />
+        <source.OSM />
       </layer.Tile>
       <layer.Vector>
         <source.Vector>
