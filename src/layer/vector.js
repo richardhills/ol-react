@@ -8,6 +8,7 @@ export default class Vector extends OLContainer {
     this.layer = new ol.layer.Vector({
       updateWhileAnimating: props.updateWhileAnimating,
       updateWhileInteracting: props.updateWhileInteracting,
+      style: this.props.style,
       visible: this.props.visible
     })
     this.layer.setZIndex(props.zIndex)
@@ -25,6 +26,7 @@ export default class Vector extends OLContainer {
   }
 
   componentWillReceiveProps (newProps) {
+    this.layer.setStyle(newProps.style);
     this.layer.setVisible(newProps.visible)
     this.layer.setZIndex(newProps.zIndex)
   }
@@ -37,6 +39,7 @@ export default class Vector extends OLContainer {
 Vector.propTypes = {
   updateWhileAnimating: React.PropTypes.bool,
   updateWhileInteracting: React.PropTypes.bool,
+  style: React.PropTypes.arrayOf(React.PropTypes.instanceOf(ol.style.Style)),
   visible: React.PropTypes.bool,
   zIndex: React.PropTypes.number
 }
