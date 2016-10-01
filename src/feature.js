@@ -11,6 +11,9 @@ export default class Feature extends OLComponent {
   }
 
   updateFromProps(props) {
+    if (props.feature) {
+      this.feature.setGeometry(props.feature.getGeometry());
+    }
     this.feature.setStyle(this.buildStyle(props));
   }
 
@@ -34,7 +37,7 @@ export default class Feature extends OLComponent {
       feature: this.feature
     }
   }
-  
+
   componentDidMount() {
     this.context.source.addFeature(this.feature);
   }
