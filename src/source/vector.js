@@ -26,8 +26,14 @@ export default class Vector extends OLComponent {
   componentWillUnmount () {}
 
   componentWillReceiveProps(newProps) {
-    this.source.clear(true);
-    this.source.addFeatures(newProps.features);
+    if (this.props.features) {
+      this.props.features.forEach(feature => {
+        this.source.removeFeature(feature);
+      });
+    }
+    if (newProps.features) {
+      this.source.addFeatures(newProps.features);
+    }
   }
 }
 
