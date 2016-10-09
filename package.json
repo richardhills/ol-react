@@ -13,7 +13,9 @@
   },
   "devDependencies": {
     "babel": "^4.6.0",
-    "babel-loader": "^6.2.0"
+    "babel-loader": "^6.2.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
   },
   "peerDependencies": {
     "react": "^15.0.1",
