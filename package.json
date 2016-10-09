@@ -1,6 +1,6 @@
 {
   "name": "ol-react",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "React interface for openlayers",
   "main": "lib/index.js",
   "scripts": {
@@ -8,8 +8,7 @@
   "author": "richard.hills@gmail.com",
   "scripts": {
     "compile": "babel -d lib/ src/",
-    "prepublish": "npm run compile",
-    "postinstall": "node scripts/postinstall.js"
+    "prepublish": "npm run compile"
   },
   "devDependencies": {
     "babel": "^4.6.0",
