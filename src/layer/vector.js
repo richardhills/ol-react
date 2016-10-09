@@ -1,6 +1,7 @@
 import React from 'react';
 import ol from 'openlayers';
 import OLContainer from '../ol-container';
+import { buildStyle } from '../style';
 
 export default class Vector extends OLContainer {
   constructor (props) {
@@ -8,6 +9,7 @@ export default class Vector extends OLContainer {
     this.layer = new ol.layer.Vector({
       updateWhileAnimating: props.updateWhileAnimating,
       updateWhileInteracting: props.updateWhileInteracting,
+      style: buildStyle(this.props.style),
       visible: this.props.visible
     })
     this.layer.setZIndex(props.zIndex)
@@ -25,6 +27,7 @@ export default class Vector extends OLContainer {
   }
 
   componentWillReceiveProps (newProps) {
+    this.layer.setStyle(buildStyle(newProps.style));
     this.layer.setVisible(newProps.visible)
     this.layer.setZIndex(newProps.zIndex)
   }
@@ -37,6 +40,14 @@ export default class Vector extends OLContainer {
 Vector.propTypes = {
   updateWhileAnimating: React.PropTypes.bool,
   updateWhileInteracting: React.PropTypes.bool,
+  style: React.PropTypes.oneOfType([
+    React.PropTypes.instanceOf(ol.style.Style),
+    React.PropTypes.object,
+    React.PropTypes.arrayOf(React.PropTypes.oneOfType([
+      React.PropTypes.instanceOf(ol.style.Style),
+      React.PropTypes.object
+    ]))
+  ]),
   visible: React.PropTypes.bool,
   zIndex: React.PropTypes.number
 }

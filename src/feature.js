@@ -1,6 +1,7 @@
 import React from 'react';
 import ol from 'openlayers';
 import OLComponent from './ol-component';
+import { buildStyle } from './style';
 
 export default class Feature extends OLComponent {
   constructor(props) {
@@ -11,22 +12,7 @@ export default class Feature extends OLComponent {
   }
 
   updateFromProps(props) {
-    this.feature.setStyle(this.buildStyle(props));
-  }
-
-  buildStyle(props) {
-    var result;
-    if(props.style) {
-      result = {};
-      if(props.style.fill) {
-        result.fill = new ol.style.Fill(props.style.fill);
-      }
-      if(props.style.stroke) {
-        result.stroke = new ol.style.Stroke(props.style.stroke);
-      }
-      result = new ol.style.Style(result);
-    }
-    return result;
+    this.feature.setStyle(buildStyle(props.style));
   }
 
   getChildContext() {
@@ -41,6 +27,10 @@ export default class Feature extends OLComponent {
 
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
+  }
+
+  componentWillUnmount() {
+    this.context.source.removeFeature(this.feature);
   }
 }
 
