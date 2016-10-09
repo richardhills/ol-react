@@ -28,6 +28,10 @@ export default class Feature extends OLComponent {
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
+
+  componentWillUnmount() {
+    this.context.source.removeFeature(this.feature);
+  }
 }
 
 Feature.propTypes = {
