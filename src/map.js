@@ -11,11 +11,18 @@ export default class Map extends React.Component {
       interactions: props.useDefaultInteractions ? ol.interaction.defaults() : [],
       controls: props.useDefaultControls ? ol.control.defaults() : []
     })
+
+    if (props.onChangeSize) {
+      this.map.on('change:size', props.onChangeSize);
+    }
+    if (this.props.onSingleClick) {
+      this.map.on('singleclick', this.props.onSingleClick);
+    }
   }
 
   componentDidMount () {
     this.map.setTarget(this.refs.target)
-    
+
     if (this.props.focusOnMount) {
       this.focus()
     }
@@ -43,7 +50,7 @@ export default class Map extends React.Component {
       </div>
     )
   }
-  
+
   focus () {
     const viewport = this.map.getViewport()
     viewport.tabIndex = 0
@@ -54,6 +61,8 @@ export default class Map extends React.Component {
 Map.propTypes = {
   loadTilesWhileAnimating: React.PropTypes.bool,
   loadTilesWhileInteracting: React.PropTypes.bool,
+  onSingleClick: React.PropTypes.func,
+  onChangeSize: React.PropTypes.func,
   view: React.PropTypes.element.isRequired,
   useDefaultInteractions: React.PropTypes.bool.isRequired,
   useDefaultControls: React.PropTypes.bool.isRequired,
