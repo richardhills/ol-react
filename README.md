@@ -8,9 +8,9 @@ The goal is to be able to write applications using OpenLayers maps in a declarat
       </layer.Tile>
       <layer.Vector>
         <source.Vector>
-          <Feature style={{stroke: {color: [255, 0, 0, 1]}}}>
+          <Feature style={{stroke: {color: [255, 0, 0, 1]}}} id="red-square">
             <geom.LineString>
-              {[[0, 0], [100000, 0], [100000, 100000], [0, 100000]]}
+              {[[0, 0], [100000, 0], [100000, 100000], [0, 100000], [0, 0]]}
             </geom.LineString>
           </Feature>
         </source.Vector>
