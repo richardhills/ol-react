@@ -1,6 +1,6 @@
 // Type definitions for ol-react 0.1.5
 // Project: https://github.com/richardhills/ol-react
-// Definitions by: Status Awareness Systems (http://statusas.com)
+// Definitions by: Jono Rogers (https://github.com/jonorogers), Status Awareness Systems (http://statusas.com)
 
 /// <reference types="react" />
 /// <reference types="openlayers" />
@@ -65,9 +65,6 @@ declare namespace __OLReact {
         export function Extent();
     }
 
-    ///////
-    ///////     CONTROL
-    ///////
     export namespace control {
         type ScaleLineUnits = "degrees" | "imperial" | "nautical" | "metric" | "us";
 
@@ -172,9 +169,6 @@ declare namespace __OLReact {
         }
     }
 
-    ///////
-    ///////     GEOM
-    ///////
     export namespace geom {
         interface LineStringProps {
             children?: number[][];
@@ -194,10 +188,6 @@ declare namespace __OLReact {
         export class RawGeometry extends OLComponent<RawGeometryProps, any> {
         }
     }
-
-    ///////
-    ///////     INTERACTION
-    ///////
 
     export namespace interaction {
 
@@ -299,9 +289,6 @@ declare namespace __OLReact {
         export class Select extends OLInteraction<SelectProps, any> { }
     }
 
-    ///////
-    ///////     LAYER
-    ///////
     export namespace layer {
         interface ImageProps {
             visible?: boolean;
@@ -328,9 +315,6 @@ declare namespace __OLReact {
         }
     }
 
-    ///////
-    ///////     SOURCE
-    ///////
     export namespace source {
         interface BingMapsProps {
             apiKey: string;
