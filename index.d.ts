@@ -27,7 +27,7 @@ declare namespace __OLReact {
     interface FeatureProps {
         style?: Object;
         children?: JSX.Element;
-        id?: any;
+        id: any;
     }
 
     export class Feature extends OLComponent<FeatureProps, any> {
