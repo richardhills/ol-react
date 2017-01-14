@@ -344,5 +344,12 @@ declare namespace __OLReact {
         }
         export class Vector extends OLComponent<VectorProps, any> {
         }
+
+        interface XYZProps {
+            url?: string;
+            urls?: string[];
+        }
+        export class XYZ extends OLComponent<XYZProps, any> {
+        }
     }
 }
