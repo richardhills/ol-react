@@ -20,10 +20,6 @@ export default class Point extends OLComponent {
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
-
-  render() {
-    return false;
-  }
 }
 
 Point.propTypes = {
