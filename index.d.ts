@@ -187,6 +187,12 @@ declare namespace __OLReact {
         }
         export class RawGeometry extends OLComponent<RawGeometryProps, any> {
         }
+
+        interface PointProps {
+            children?: number[];
+        }
+        export class Point extends OLComponent<PointProps, any> {
+        }
     }
 
     export namespace interaction {
