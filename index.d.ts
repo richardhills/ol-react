@@ -198,7 +198,7 @@ declare namespace __OLReact {
     export namespace interaction {
 
         interface OLInteractionProps {
-            active: boolean;
+            active?: boolean;
         }
         export class OLInteraction<P, S> extends OLComponent<P, S> { }
 
