@@ -6,25 +6,27 @@ export default class View extends OLComponent {
   constructor(props) {
     super(props);
     this.view = new ol.View();
-    //this.view.on("change:center", this.onCenterChanged, this);
-    //this.view.on("change:resolution", this.onResolutionChanged, this);
   }
 
-  onCenterChanged (event) {
-    this.props.onNavigation({
-      center: this.view.getCenter()
-    })
+  onMoveEnd(event) {
+    if (this.props.onNavigation) {
+      this.props.onNavigation({
+        center: this.view.getCenter(),
+        resolution: this.view.getResolution(),
+        zoom: this.view.getZoom(),
+        rotation: this.view.getRotation()
+      });
+    }
   }
 
-  onResolutionChanged (event) {
-    this.props.onNavigation({
-      resolution: this.view.getResolution()
-    })
-    return true
-  }
+  updateFromProps_(props) {
+    if (typeof props.center !== 'undefined') {
+      this.view.setCenter(props.center);
+    }
+    if (typeof props.rotation !== 'undefined') {
+      this.view.setRotation(props.rotation);
+    }
 
-  updateCenterAndResolutionFromProps_ (props) {
-    this.view.setCenter(props.center);
     if (typeof props.resolution !== 'undefined') {
       this.view.setResolution(props.resolution);
     } else if (typeof props.zoom !== 'undefined') {
@@ -32,29 +34,25 @@ export default class View extends OLComponent {
     }
   }
 
-  updateFromProps_ (props, isMounting) {
-    if (isMounting) {
-      // Update the center and the resolution of the view only when it is
-      // mounted the first time but not when the properties are updated
-      this.updateCenterAndResolutionFromProps_(props)
-    }
+  componentDidMount() {
+    this.context.map.setView(this.view);
+    this.updateFromProps_(this.props);
+
+    this.context.map.on("moveend", this.onMoveEnd, this);
   }
 
-  componentDidMount () {
-    this.context.map.setView(this.view)
-    this.updateFromProps_(this.props, /* isMounting = */ true)
-  }
-
-  componentWillReceiveProps (newProps) {
-    this.updateFromProps_(newProps);
+  componentWillReceiveProps(props) {
+    this.updateFromProps_(props);
   }
 }
 
 View.propTypes = {
-	center: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
-	resolution: React.PropTypes.number,
-	zoom: React.PropTypes.number,
-	onNavigation: React.PropTypes.func
+  center: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
+  resolution: React.PropTypes.number,
+  zoom: React.PropTypes.number,
+  onResolutionChanged: React.PropTypes.func,
+  onZoomChanged: React.PropTypes.func,
+  onCenterChanged: React.PropTypes.func
 }
 
 View.contextTypes = {

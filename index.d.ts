@@ -53,6 +53,7 @@ declare namespace __OLReact {
         center: number[];
         resolution?: number;
         zoom?: number;
+        rotation?: number;
         onNavigation?: Function;
     }
 
