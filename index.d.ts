@@ -325,6 +325,7 @@ declare namespace __OLReact {
     export namespace source {
         interface BingMapsProps {
             apiKey: string;
+            imagerySet: string;
         }
         export class BingMaps extends OLComponent<BingMapsProps, any> {
         }
