@@ -4,13 +4,11 @@
   "description": "React interface for openlayers",
   "main": "lib/index.js",
   "scripts": {
-  },
-  "author": "richard.hills@gmail.com",
-  "scripts": {
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile",
     "postinstall": "node scripts/postinstall.js"
   },
+  "author": "richard.hills@gmail.com",
   "devDependencies": {
     "babel": "^4.6.0",
     "babel-loader": "^6.2.0",
@@ -22,6 +20,6 @@
     "react-dom": "^15.0.1"
   },
   "dependencies": {
-    "openlayers": "^3.16.0"
+    "openlayers": "^3.20.1"
   }
 }
