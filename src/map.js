@@ -9,7 +9,8 @@ export default class Map extends React.Component {
       loadTilesWhileAnimating: props.loadTilesWhileAnimating,
       loadTilesWhileInteracting: props.loadTilesWhileInteracting,
       interactions: props.useDefaultInteractions ? ol.interaction.defaults() : [],
-      controls: props.useDefaultControls ? ol.control.defaults() : []
+      controls: props.useDefaultControls ? ol.control.defaults() : [],
+      overlays: []
     })
 
     if (props.onChangeSize) {

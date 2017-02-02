@@ -15,6 +15,7 @@ declare module "ol-react" {
     export import Feature = __OLReact.Feature;
     export import Map = __OLReact.Map;
     export import View = __OLReact.View;
+    export import Overlay = __OLReact.Overlay;
 }
 
 declare namespace __OLReact {
@@ -58,8 +59,19 @@ declare namespace __OLReact {
     }
 
     export class View extends OLComponent<ViewProps, any> {
-        onCenterChanged(event: any): void;
-        onResolutionChanged(event: any): void;
+    }
+
+    interface OverlayProps {
+        id: number | string;
+        element?: JSX.Element;
+        offset?: number[];
+        position?: number[];
+        positioning?: string;
+        stopEvent?: boolean;
+        insertFirst?: boolean;
+    }
+
+    export class Overlay extends OLComponent<OverlayProps, any> {
     }
 
     namespace OLProps {
@@ -336,7 +348,7 @@ declare namespace __OLReact {
         }
         export class ImageArcGISRest extends OLComponent<ImageArcGISRestProps, any> {
         }
-        
+
         interface MapQuestProps {
             layer: string;
         }
