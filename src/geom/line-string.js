@@ -20,6 +20,10 @@ export default class LineString extends OLComponent {
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
+
+  render() {
+    return false;
+  }
 }
 
 LineString.propTypes = {

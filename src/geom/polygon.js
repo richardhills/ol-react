@@ -10,7 +10,7 @@ export default class Polygon extends OLComponent {
   }
 
   updateFromProps(props) {
-    this.geometry.setCoordinates([this.props.children]);
+    this.geometry.setCoordinates([props.children]);
   }
 
   componentDidMount() {
@@ -20,7 +20,7 @@ export default class Polygon extends OLComponent {
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
-
+  
   render() {
     return false;
   }
