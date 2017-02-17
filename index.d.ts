@@ -32,6 +32,7 @@ declare namespace __OLReact {
     }
 
     export class Feature extends OLComponent<FeatureProps, any> {
+        getGeometry() : ol.geom.Geometry;
     }
 
     interface MapProps {
@@ -51,14 +52,19 @@ declare namespace __OLReact {
     }
 
     interface ViewProps {
-        center: number[];
+        center?: number[];
         resolution?: number;
         zoom?: number;
         rotation?: number;
+        initialCenter?: number[];
+        initialResolution?: number;
+        initialZoom?: number;
+        initialRotation?: number;
         onNavigation?: Function;
     }
 
     export class View extends OLComponent<ViewProps, any> {
+        fit(geometry: ol.geom.Geometry | ol.Extent, options?: Object): void;
     }
 
     interface OverlayProps {
