@@ -32,6 +32,10 @@ export default class Feature extends OLComponent {
   componentWillUnmount() {
     this.context.source.removeFeature(this.feature);
   }
+
+  getGeometry() {
+    return this.feature.getGeometry();
+  }
 }
 
 Feature.propTypes = {
