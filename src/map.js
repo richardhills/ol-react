@@ -3,7 +3,7 @@ import ol from 'openlayers';
 import OLComponent from './ol-component';
 
 export default class Map extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.map = new ol.Map({
       loadTilesWhileAnimating: props.loadTilesWhileAnimating,
@@ -21,7 +21,7 @@ export default class Map extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.map.setTarget(this.refs.target)
 
     if (this.props.focusOnMount) {
@@ -29,20 +29,20 @@ export default class Map extends React.Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.map.setTarget(undefined)
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       map: this.map
     }
   }
 
-  render () {
+  render() {
     return (
       <div style={this.props.style}>
-        <div ref="target">
+        <div ref="target" style={{ width: '100%', height: '100%' }}>
         </div>
         <div>
           {this.props.children}
@@ -52,7 +52,7 @@ export default class Map extends React.Component {
     )
   }
 
-  focus () {
+  focus() {
     const viewport = this.map.getViewport()
     viewport.tabIndex = 0
     viewport.focus()

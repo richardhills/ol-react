@@ -51,6 +51,10 @@ export default class View extends OLComponent {
     this.updateFromProps_(props);
   }
 
+  animate(options) {
+    this.view.animate(options);
+  }
+
   fit(geometry, options) {
     this.view.fit(geometry, options);
   }

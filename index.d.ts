@@ -32,7 +32,9 @@ declare namespace __OLReact {
     }
 
     export class Feature extends OLComponent<FeatureProps, any> {
-        getGeometry() : ol.geom.Geometry;
+        getGeometry(): ol.geom.Geometry;
+
+        feature: ol.Feature;
     }
 
     interface MapProps {
@@ -45,6 +47,7 @@ declare namespace __OLReact {
         useDefaultControls?: boolean;
         focusOnMount?: boolean;
         children?: JSX.Element | JSX.Element[];
+        style?: React.CSSProperties;
     }
 
     export class Map extends React.Component<MapProps, any> {
@@ -64,6 +67,7 @@ declare namespace __OLReact {
     }
 
     export class View extends OLComponent<ViewProps, any> {
+        animate(options: any);
         fit(geometry: ol.geom.Geometry | ol.Extent, options?: Object): void;
     }
 
