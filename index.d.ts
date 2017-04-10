@@ -52,6 +52,7 @@ declare namespace __OLReact {
 
     export class Map extends React.Component<MapProps, any> {
         focus(): void;
+        getSize(): ol.Size;
     }
 
     interface ViewProps {
@@ -68,7 +69,7 @@ declare namespace __OLReact {
 
     export class View extends OLComponent<ViewProps, any> {
         animate(options: any);
-        fit(geometry: ol.geom.Geometry | ol.Extent, options?: Object): void;
+        fit(geometry: ol.geom.Geometry | ol.Extent, size: ol.Size, options?: Object): void;
     }
 
     interface OverlayProps {

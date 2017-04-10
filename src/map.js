@@ -57,6 +57,10 @@ export default class Map extends React.Component {
     viewport.tabIndex = 0
     viewport.focus()
   }
+
+  getSize() {
+    return this.map.getSize()
+  }
 }
 
 Map.propTypes = {
