@@ -64,7 +64,7 @@ declare namespace __OLReact {
         initialResolution?: number;
         initialZoom?: number;
         initialRotation?: number;
-        onNavigation?: Function;
+        onNavigation?(center: number[], resolution: number, zoom: number, rotation: number): void
     }
 
     export class View extends OLComponent<ViewProps, any> {
@@ -236,7 +236,7 @@ declare namespace __OLReact {
             boxdrag?: Function;
             boxend?: Function;
             boxstart?: Function;
-            condition?: Function;
+            condition?: ol.EventsConditionType;
         }
         export class DragBox extends OLInteraction<DragBoxProps, any> { }
 
@@ -245,13 +245,13 @@ declare namespace __OLReact {
         export class DragPan extends OLInteraction<DragPanProps, any> { }
 
         interface DragRotateProps extends OLInteractionProps {
-            condition?: Function;
+            condition?: ol.EventsConditionType;
             duration?: number;
         }
         export class DragRotate extends OLInteraction<DragRotateProps, any> { }
 
         interface DragRotateAndZoomProps extends OLInteractionProps {
-            condition?: Function,
+            condition?: ol.EventsConditionType,
             duration?: number;
         }
         export class DragRotateAndZoom extends OLInteraction<DragRotateAndZoomProps, any> { }
@@ -260,7 +260,7 @@ declare namespace __OLReact {
             boxdrag?: Function;
             boxend?: Function;
             boxstart?: Function;
-            condition?: Function;
+            condition?: ol.EventsConditionType;
             duration?: number;
             out?: boolean;
         }
@@ -274,21 +274,21 @@ declare namespace __OLReact {
         export class Draw extends OLInteraction<DrawProps, any> { }
 
         interface KeyboardPanProps extends OLInteractionProps {
-            condition?: Function;
+            condition?: ol.EventsConditionType;
             duration?: number;
             pixelDelta?: number;
         }
         export class KeyboardPan extends OLInteraction<KeyboardPanProps, any> { }
 
         interface KeyboardZoomProps extends OLInteractionProps {
-            condition?: Function;
+            condition?: ol.EventsConditionType;
             delta?: number;
             duration?: number;
         }
         export class KeyboardZoom extends OLInteraction<KeyboardZoomProps, any> { }
 
         interface ModifyProps extends OLInteractionProps {
-            condition?: Function;
+            condition?: ol.EventsConditionType;
             modifyend?: Function;
             modifystart?: Function;
             features: ol.Collection<ol.Feature>;
@@ -313,7 +313,7 @@ declare namespace __OLReact {
         export class PinchZoom extends OLInteraction<PinchZoomProps, any> { }
 
         interface SelectProps extends OLInteractionProps {
-            condition?: Function;
+            condition?: ol.EventsConditionType;
             select?: Function;
         }
         export class Select extends OLInteraction<SelectProps, any> { }

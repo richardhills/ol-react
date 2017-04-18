@@ -8,20 +8,21 @@ export default class View extends OLComponent {
     var opts = {
       center: props.initialCenter,
       resolution: props.initialResolution,
+      rotation: props.initialRotation,
       zoom: props.initialZoom,
-      rotation: props.initialRotation
     };
     this.view = new ol.View(opts);
   }
 
   onMoveEnd(event) {
-    if (this.props.onNavigation) {
-      this.props.onNavigation({
-        center: this.view.getCenter(),
-        resolution: this.view.getResolution(),
-        zoom: this.view.getZoom(),
-        rotation: this.view.getRotation()
-      });
+    if (this.props.onNavigation && this.props.initialCenter[0] !== this.view.getCenter()[0]) {
+      // Don't fire an event unless we've actually moved from initial location
+      this.props.onNavigation(
+        this.view.getCenter(),
+        this.view.getResolution(),
+        this.view.getZoom(),
+        this.view.getRotation()
+      );
     }
   }
 
@@ -32,8 +33,8 @@ export default class View extends OLComponent {
     if (typeof nextProps.rotation !== 'undefined') {
       this.view.setRotation(nextProps.rotation);
     }
-
-    if (typeof nextProps.resolution !== 'undefined') {
+    // Set either Resolution OR zoom, but guard against 0 (will cause map to not render)
+    if (typeof nextProps.resolution !== 'undefined' && nextProps.resolution !== 0) {
       this.view.setResolution(nextProps.resolution);
     } else if (typeof nextProps.zoom !== 'undefined') {
       this.view.setZoom(nextProps.zoom);
@@ -77,7 +78,7 @@ View.propTypes = {
 View.defaultProps = {
   initialCenter: [0, 0],
   initialResolution: 10000,
-  initialZoom: 10,
+  initialZoom: 0,
   initialRotation: 0
 }
 
