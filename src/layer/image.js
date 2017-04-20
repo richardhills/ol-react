@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import ol from 'openlayers'
 import OLContainer from '../ol-container'
@@ -32,8 +33,8 @@ export default class Image extends OLContainer {
 }
 
 Image.propTypes = {
-  visible: React.PropTypes.bool,
-  zIndex: React.PropTypes.number
+  visible: PropTypes.bool,
+  zIndex: PropTypes.number
 }
 
 Image.defaultProps = {
@@ -41,9 +42,9 @@ Image.defaultProps = {
 }
 
 Image.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
+  map: PropTypes.instanceOf(ol.Map)
 }
 
 Image.childContextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Image)
+  layer: PropTypes.instanceOf(ol.layer.Image)
 }

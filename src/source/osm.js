@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLComponent from '../ol-component';
@@ -17,5 +18,5 @@ OSM.propTypes = {
 }
 
 OSM.contextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Base)
+  layer: PropTypes.instanceOf(ol.layer.Base)
 }

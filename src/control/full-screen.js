@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -16,13 +17,13 @@ export default class FullScreen extends OLControl {
 }
 
 FullScreen.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  keys: React.PropTypes.bool,
-  label: React.PropTypes.node,
-  labelActive: React.PropTypes.node,
-  source: React.PropTypes.oneOfType([
-    React.PropTypes.node,
-    React.PropTypes.any
+  className: PropTypes.string,
+  keys: PropTypes.bool,
+  label: PropTypes.node,
+  labelActive: PropTypes.node,
+  source: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.any
   ]),
-  tipLabel: React.PropTypes.string
+  tipLabel: PropTypes.string
 })

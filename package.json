@@ -23,5 +23,7 @@
   },
   "dependencies": {
     "openlayers": "^4.0.1"
-  }
+  },
+  "repository": "https://github.com/statusas/ol-react.git",
+  "license": "MIT"
 }

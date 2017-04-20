@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLComponent from '../ol-component';
@@ -27,9 +28,9 @@ export default class Point extends OLComponent {
 }
 
 Point.propTypes = {
-  children: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
+  children: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
 Point.contextTypes = {
-  feature: React.PropTypes.instanceOf(ol.Feature)
+  feature: PropTypes.instanceOf(ol.Feature)
 }

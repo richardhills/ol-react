@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -14,8 +15,8 @@ export default class ZoomSlider extends OLControl {
 }
 
 ZoomSlider.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  duration: React.PropTypes.number,
-  maxResolution: React.PropTypes.number,
-  minResolution: React.PropTypes.number
+  className: PropTypes.string,
+  duration: PropTypes.number,
+  maxResolution: PropTypes.number,
+  minResolution: PropTypes.number
 })

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom'
 import ol from 'openlayers';
@@ -49,18 +50,18 @@ export default class Overlay extends OLComponent {
 }
 
 Overlay.propTypes = {
-  id: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string
+  id: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
   ]),
-  element: React.PropTypes.element,
-  offset: React.PropTypes.arrayOf(React.PropTypes.number),
-  position: React.PropTypes.arrayOf(React.PropTypes.number),
-  positioning: React.PropTypes.string,
-  stopEvent: React.PropTypes.bool,
-  insertFirst: React.PropTypes.bool
+  element: PropTypes.element,
+  offset: PropTypes.arrayOf(PropTypes.number),
+  position: PropTypes.arrayOf(PropTypes.number),
+  positioning: PropTypes.string,
+  stopEvent: PropTypes.bool,
+  insertFirst: PropTypes.bool
 }
 
 Overlay.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
+  map: PropTypes.instanceOf(ol.Map)
 }

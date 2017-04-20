@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -17,11 +18,11 @@ export default class Zoom extends OLControl {
 }
 
 Zoom.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  delta: React.PropTypes.number,
-  duration: React.PropTypes.number,
-  zoomInLabel: React.PropTypes.node,
-  zoomInTipLabel: React.PropTypes.string,
-  zoomOutLabel: React.PropTypes.node,
-  zoomOutTipLabel: React.PropTypes.string
+  className: PropTypes.string,
+  delta: PropTypes.number,
+  duration: PropTypes.number,
+  zoomInLabel: PropTypes.node,
+  zoomInTipLabel: PropTypes.string,
+  zoomOutLabel: PropTypes.node,
+  zoomOutTipLabel: PropTypes.string
 })

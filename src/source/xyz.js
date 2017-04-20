@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLComponent from '../ol-component';
@@ -14,10 +15,10 @@ export default class XYZ extends OLComponent {
 }
 
 XYZ.propTypes = {
-  url: React.PropTypes.string,
-  urls: React.PropTypes.arrayOf(React.PropTypes.string)
+  url: PropTypes.string,
+  urls: PropTypes.arrayOf(PropTypes.string)
 }
 
 XYZ.contextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Base)
+  layer: PropTypes.instanceOf(ol.layer.Base)
 }

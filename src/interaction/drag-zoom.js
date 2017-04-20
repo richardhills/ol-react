@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLInteraction from './ol-interaction';
@@ -13,12 +14,12 @@ export default class DragZoom extends OLInteraction {
 }
 
 DragZoom.propTypes = Object.assign({}, OLInteraction.propTypes, {
-  boxdrag: React.PropTypes.func,
-  boxend: React.PropTypes.func,
-  boxstart: React.PropTypes.func,
-  condition: React.PropTypes.func,
-  duration: React.PropTypes.number,
-  out: React.PropTypes.bool
+  boxdrag: PropTypes.func,
+  boxend: PropTypes.func,
+  boxstart: PropTypes.func,
+  condition: PropTypes.func,
+  duration: PropTypes.number,
+  out: PropTypes.bool
 })
 
 DragZoom.olEvents = ["boxdrag", "boxend", "boxstart"]

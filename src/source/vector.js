@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import ol from 'openlayers'
 import OLComponent from '../ol-component'
@@ -33,10 +34,10 @@ Vector.defaultProps = {
 }
 
 Vector.contextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Base),
-  map: React.PropTypes.instanceOf(ol.Map)
+  layer: PropTypes.instanceOf(ol.layer.Base),
+  map: PropTypes.instanceOf(ol.Map)
 }
 
 Vector.childContextTypes = {
-  source: React.PropTypes.instanceOf(ol.source.Source)
+  source: PropTypes.instanceOf(ol.source.Source)
 }
