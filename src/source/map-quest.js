@@ -1,22 +1,17 @@
 import React from 'react';
 import ol from 'openlayers';
-import OLComponent from '../ol-component';
+import OLSourceComponent from '../ol-source-component';
 
-export default class MapQuest extends OLComponent {
+export default class MapQuest extends OLSourceComponent {
   constructor(props) {
     super(props);
-    this.source = new ol.source.MapQuest(this.props);
   }
 
-  componentDidMount() {
-    this.context.layer.setSource(this.source);
+  _createSourceFromProps(props) {
+    return new ol.source.MapQuest(Object.assign({}, props));
   }
 }
 
 MapQuest.propTypes = {
   layer: React.PropTypes.string.isRequired
-}
-
-MapQuest.contextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Base)
 }
