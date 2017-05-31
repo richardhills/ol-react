@@ -15,6 +15,13 @@ export default class Overlay extends OLComponent {
       stopEvent: props.stopEvent,
       insertFirst: props.insertFirst
     });
+
+    this.element = document.createElement("div")
+  }
+
+  componentWillUnmount() {
+    ReactDOM.unmountComponentAtNode(this.element);
+    this.element.parentNode.removeChild(this.element);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -24,10 +31,6 @@ export default class Overlay extends OLComponent {
   updateFromProps_(props) {
 
     if (typeof props.element !== 'undefined') {
-      if (typeof this.element !== 'undefined') {
-        this.element.remove();
-      }
-      this.element = document.createElement("div");
       ReactDOM.render(props.element, this.element);
       this.overlay.setElement(this.element);
     }
@@ -58,22 +61,26 @@ export default class Overlay extends OLComponent {
   animate(finishCoords, animationLength) {
     let frame = animationLength * 1000;
     let startCoords = this.overlay.getPosition();
-    let delta = [finishCoords[0] - startCoords[0], finishCoords[1] - startCoords[1]];
 
-    let finish = null;
-    let step = (timestamp) => {
-      if (!finish) {
-        finish = timestamp + frame;
+    if (startCoords) {
+
+      let delta = [finishCoords[0] - startCoords[0], finishCoords[1] - startCoords[1]];
+
+      let finish = null;
+      let step = (timestamp) => {
+        if (!finish) {
+          finish = timestamp + frame;
+        }
+        if (timestamp < finish) {
+          let progress = 1 - ((finish - timestamp) / frame);
+          this.overlay.setPosition([startCoords[0] + (delta[0] * progress), startCoords[1] + (delta[1] * progress)]);
+          window.requestAnimationFrame(step);
+        } else {
+          this.overlay.setPosition(finishCoords);
+        }
       }
-      if (timestamp < finish) {
-        let progress = 1 - ((finish - timestamp) / frame);
-        this.overlay.setPosition([startCoords[0] + (delta[0] * progress), startCoords[1] + (delta[1] * progress)]);
-        window.requestAnimationFrame(step);
-      } else {
-        this.overlay.setPosition(finishCoords);
-      }
+      window.requestAnimationFrame(step);
     }
-    window.requestAnimationFrame(step);
   }
 }
 
