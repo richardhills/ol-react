@@ -17,6 +17,9 @@ export default class Overlay extends OLComponent {
     });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props != nextProps
+  }
 
   updateFromProps_(props) {
 
@@ -32,7 +35,11 @@ export default class Overlay extends OLComponent {
       this.overlay.setOffset(props.offset);
     }
     if (typeof props.position !== 'undefined') {
-      this.overlay.setPosition(props.position);
+      if (props.animate) {
+        this.animate(props.position, props.animationLength)
+      } else {
+        this.overlay.setPosition(props.position);
+      }
     }
     if (typeof props.positioning !== 'undefined') {
       this.overlay.setPositioning(props.positioning);
@@ -47,6 +54,27 @@ export default class Overlay extends OLComponent {
   componentWillReceiveProps(props) {
     this.updateFromProps_(props);
   }
+
+  animate(finishCoords, animationLength) {
+    let frame = animationLength * 1000;
+    let startCoords = this.overlay.getPosition();
+    let delta = [finishCoords[0] - startCoords[0], finishCoords[1] - startCoords[1]];
+
+    let finish = null;
+    let step = (timestamp) => {
+      if (!finish) {
+        finish = timestamp + frame;
+      }
+      if (timestamp < finish) {
+        let progress = 1 - ((finish - timestamp) / frame);
+        this.overlay.setPosition([startCoords[0] + (delta[0] * progress), startCoords[1] + (delta[1] * progress)]);
+        window.requestAnimationFrame(step);
+      } else {
+        this.overlay.setPosition(finishCoords);
+      }
+    }
+    window.requestAnimationFrame(step);
+  }
 }
 
 Overlay.propTypes = {
@@ -59,7 +87,9 @@ Overlay.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number),
   positioning: PropTypes.string,
   stopEvent: PropTypes.bool,
-  insertFirst: PropTypes.bool
+  insertFirst: PropTypes.bool,
+  animate: PropTypes.bool,
+  animationLength: PropTypes.number
 }
 
 Overlay.contextTypes = {

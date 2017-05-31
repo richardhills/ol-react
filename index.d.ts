@@ -80,6 +80,8 @@ declare namespace __OLReact {
         positioning?: string;
         stopEvent?: boolean;
         insertFirst?: boolean;
+        animate?: boolean;
+        animationLength?: number;
     }
 
     export class Overlay extends OLComponent<OverlayProps, any> {
@@ -214,6 +216,8 @@ declare namespace __OLReact {
 
         interface PointProps {
             children?: number[];
+            animate?: boolean;
+            animationLength?: number;
         }
         export class Point extends OLComponent<PointProps, any> {
         }

@@ -10,8 +10,37 @@ export default class Point extends OLComponent {
     this.updateFromProps(props);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.children != nextProps.children
+  }
+
   updateFromProps(props) {
-    this.geometry.setCoordinates(this.props.children);
+    if (props.animate) {
+      this.animate(props.children, props.animationLength);
+    } else {
+      this.geometry.setCoordinates(this.props.children);
+    }
+  }
+
+  animate(finishCoords, animationLength) {
+    let frame = animationLength * 1000;
+    let startCoords = this.geometry.getCoordinates()
+    let delta = [finishCoords[0] - startCoords[0], finishCoords[1] - startCoords[1]];
+
+    let finish = null;
+    step = (timestamp) => {
+      if (!finish) {
+        finish = timestamp + frame;
+      }
+      if (timestamp < finish) {
+        let progress = 1 - ((finish - timestamp) / frame);
+        this.geometry.setCoordinates([startCoords[0] + (delta[0] * progress), startCoords[1] + (delta[1] * progress)]);
+        window.requestAnimationFrame(step);
+      } else {
+        this.geometry.setCoordinates(finishCoords);
+      }
+    }
+    window.requestAnimationFrame(step);
   }
 
   componentDidMount() {
@@ -21,7 +50,7 @@ export default class Point extends OLComponent {
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
-  
+
   render() {
     return false;
   }
@@ -29,6 +58,8 @@ export default class Point extends OLComponent {
 
 Point.propTypes = {
   children: PropTypes.arrayOf(PropTypes.number).isRequired,
+  animate: PropTypes.bool,
+  animationLength: PropTypes.number
 }
 
 Point.contextTypes = {
