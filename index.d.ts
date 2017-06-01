@@ -204,6 +204,8 @@ declare namespace __OLReact {
 
         interface PolygonProps {
             children?: number[][];
+            editable?: boolean;
+            modifyEnd?: (e: ol.interaction.ModifyEvent) => void;
         }
         export class Polygon extends OLComponent<PolygonProps, any> {
         }

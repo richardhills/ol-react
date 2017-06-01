@@ -16,12 +16,22 @@ export default class Polygon extends OLComponent {
 
   componentDidMount() {
     this.context.feature.setGeometry(this.geometry);
+    if (this.props.editable) {
+      let interactions = this.context.map.getInteractions()
+      let polyInteraction = new ol.interaction.Modify({
+        features: new ol.Collection([this.context.feature])
+      })
+      if (this.props.modifyEnd) {
+        polyInteraction.on('modifyend', this.props.modifyEnd);
+      }
+      interactions.push(polyInteraction);
+    }
   }
 
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
-  
+
   render() {
     return false;
   }
@@ -31,8 +41,11 @@ Polygon.propTypes = {
   children: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.number)
   ).isRequired,
+  editable: PropTypes.bool,
+  modifyEnd: PropTypes.func
 }
 
 Polygon.contextTypes = {
-  feature: PropTypes.instanceOf(ol.Feature)
+  feature: PropTypes.instanceOf(ol.Feature),
+  map: PropTypes.instanceOf(ol.Map)
 }
