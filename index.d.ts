@@ -196,18 +196,24 @@ declare namespace __OLReact {
     }
 
     export namespace geom {
+
+        interface OLGeometryProps {
+            modify?: boolean;
+            modifyStart?: (e: ol.interaction.Modify.Event) => void;
+            modifyEnd?: (e: ol.interaction.Modify.Event) => void;
+        }
+        export class OLGeometry<OLGeometryProps, S> extends OLComponent<OLGeometryProps, S> { }
+
         interface LineStringProps {
             children?: number[][];
         }
         export class LineString extends OLComponent<LineStringProps, any> {
         }
 
-        interface PolygonProps {
+        interface PolygonProps extends OLGeometryProps {
             children?: number[][];
-            editable?: boolean;
-            modifyEnd?: (e: ol.interaction.Modify.Event) => void;
         }
-        export class Polygon extends OLComponent<PolygonProps, any> {
+        export class Polygon extends OLGeometry<PolygonProps, any> {
         }
 
         interface RawGeometryProps {

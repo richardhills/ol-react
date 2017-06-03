@@ -14,10 +14,6 @@ export default class LineString extends OLComponent {
     this.geometry.setCoordinates(props.children);
   }
 
-  componentDidMount() {
-    this.context.feature.setGeometry(this.geometry);
-  }
-
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
@@ -34,5 +30,6 @@ LineString.propTypes = {
 }
 
 LineString.contextTypes = {
-  feature: PropTypes.instanceOf(ol.Feature)
+  feature: PropTypes.instanceOf(ol.Feature),
+  map: PropTypes.instanceOf(ol.Map),
 }

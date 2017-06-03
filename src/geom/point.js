@@ -43,10 +43,6 @@ export default class Point extends OLComponent {
     window.requestAnimationFrame(step);
   }
 
-  componentDidMount() {
-    this.context.feature.setGeometry(this.geometry);
-  }
-
   componentWillReceiveProps(newProps) {
     this.updateFromProps(newProps);
   }
@@ -63,5 +59,6 @@ Point.propTypes = {
 }
 
 Point.contextTypes = {
-  feature: PropTypes.instanceOf(ol.Feature)
+  feature: PropTypes.instanceOf(ol.Feature),
+  map: PropTypes.instanceOf(ol.Map),
 }
