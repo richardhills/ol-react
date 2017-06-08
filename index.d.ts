@@ -40,8 +40,9 @@ declare namespace __OLReact {
     interface MapProps {
         loadTilesWhileAnimating?: boolean;
         loadTilesWhileInteracting?: boolean;
-        onSingleClick?: Function;
-        onChangeSize?: Function;
+        onSingleClick?: (evt: ol.MapBrowserEvent) => void;
+        onChangeSize?: (evt: ol.MapBrowserEvent) => void;
+        onFeatureHover?: (feature: ol.Feature) => void
         view: JSX.Element;
         useDefaultInteractions?: boolean;
         useDefaultControls?: boolean;

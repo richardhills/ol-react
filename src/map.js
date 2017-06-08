@@ -15,10 +15,13 @@ export default class Map extends React.Component {
     })
 
     if (props.onChangeSize) {
-      this.map.on('change:size', props.onChangeSize);
+      this.map.on('change:size', this.props.onChangeSize);
     }
     if (this.props.onSingleClick) {
       this.map.on('singleclick', this.props.onSingleClick);
+    }
+    if (this.props.onFeatureHover) {
+      this.map.on('pointermove', this.onFeatureHover, this)
     }
   }
 
@@ -53,6 +56,17 @@ export default class Map extends React.Component {
     )
   }
 
+  onFeatureHover(evt) {
+    if (evt.dragging) {
+      return;
+    }
+    let pixel = this.map.getEventPixel(evt.originalEvent);
+    let feature = this.map.forEachFeatureAtPixel(pixel, function (x) {
+      return x
+    })
+    this.props.onFeatureHover(feature)
+  }
+
   focus() {
     const viewport = this.map.getViewport()
     viewport.tabIndex = 0
@@ -69,6 +83,7 @@ Map.propTypes = {
   loadTilesWhileInteracting: PropTypes.bool,
   onSingleClick: PropTypes.func,
   onChangeSize: PropTypes.func,
+  onFeatureHover: PropTypes.func,
   view: PropTypes.element.isRequired,
   useDefaultInteractions: PropTypes.bool.isRequired,
   useDefaultControls: PropTypes.bool.isRequired,
