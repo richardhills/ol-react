@@ -23,6 +23,9 @@ export default class Map extends React.Component {
     if (this.props.onFeatureHover) {
       this.map.on('pointermove', this.onFeatureHover, this)
     }
+    if (this.props.onFeatureClick) {
+      this.map.on('singleclick', this.onFeatureClick, this)
+    }
   }
 
   componentDidMount() {
@@ -67,6 +70,15 @@ export default class Map extends React.Component {
     this.props.onFeatureHover(feature)
   }
 
+  onFeatureClick(evt) {
+    let pixel = this.map.getEventPixel(evt.originalEvent);
+    let feature = this.map.forEachFeatureAtPixel(pixel, function (x) {
+      return x
+    })
+    let lonLat = ol.proj.toLonLat(evt.coordinate)
+    this.props.onFeatureClick(feature, lonLat)
+  }
+
   focus() {
     const viewport = this.map.getViewport()
     viewport.tabIndex = 0
@@ -84,6 +96,7 @@ Map.propTypes = {
   onSingleClick: PropTypes.func,
   onChangeSize: PropTypes.func,
   onFeatureHover: PropTypes.func,
+  onFeatureClick: PropTypes.func,
   view: PropTypes.element.isRequired,
   useDefaultInteractions: PropTypes.bool.isRequired,
   useDefaultControls: PropTypes.bool.isRequired,

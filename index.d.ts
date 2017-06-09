@@ -43,6 +43,7 @@ declare namespace __OLReact {
         onSingleClick?: (evt: ol.MapBrowserEvent) => void;
         onChangeSize?: (evt: ol.MapBrowserEvent) => void;
         onFeatureHover?: (feature: ol.Feature) => void
+        onFeatureClick?: (feature: ol.Feature, coordinate: number[]) => void
         view: JSX.Element;
         useDefaultInteractions?: boolean;
         useDefaultControls?: boolean;
