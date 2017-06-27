@@ -4,8 +4,8 @@
   "description": "React interface for openlayers",
   "main": "lib/index.js",
   "scripts": {
-    "compile": "babel -d lib/ src/ --presets react",
-    "watch": "babel -d lib/ src/ --watch --presets react",
+    "compile": "babel -d lib/ src/",
+    "watch": "babel -d lib/ src/ --watch",
     "prepublish": "npm run compile",
     "postinstall": "node scripts/postinstall.js"
   },
@@ -13,6 +13,7 @@
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
