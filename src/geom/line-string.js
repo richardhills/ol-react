@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
-import OLComponent from '../ol-component';
+import OLGeometry from './ol-geometry';
 
-export default class LineString extends OLComponent {
+export default class LineString extends OLGeometry {
   constructor(props) {
     super(props);
     this.geometry = new ol.geom.LineString();

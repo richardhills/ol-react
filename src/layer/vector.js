@@ -5,35 +5,39 @@ import OLContainer from '../ol-container';
 import { buildStyle } from '../style';
 
 export default class Vector extends OLContainer {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.layer = new ol.layer.Vector({
       updateWhileAnimating: props.updateWhileAnimating,
       updateWhileInteracting: props.updateWhileInteracting,
       style: buildStyle(this.props.style),
-      visible: this.props.visible
+      opacity: props.opacity,
+      visible: props.visible,
+      extend: props.extent,
+      zIndex: props.zIndex,
+      minResolution: props.minResolution,
+      maxResolution: props.maxResolution,
     })
-    this.layer.setZIndex(props.zIndex)
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       layer: this.layer,
       map: this.context.map
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.context.map.addLayer(this.layer)
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(newProps) {
     this.layer.setStyle(buildStyle(newProps.style));
     this.layer.setVisible(newProps.visible)
     this.layer.setZIndex(newProps.zIndex)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.context.map.removeLayer(this.layer)
   }
 }
@@ -49,8 +53,12 @@ Vector.propTypes = {
       PropTypes.object
     ]))
   ]),
+  opacity: PropTypes.number,
   visible: PropTypes.bool,
-  zIndex: PropTypes.number
+  extent: PropTypes.instanceOf(ol.Extent),
+  zIndex: PropTypes.number,
+  minResolution: PropTypes.number,
+  maxResolution: PropTypes.number
 }
 
 Vector.defaultProps = {

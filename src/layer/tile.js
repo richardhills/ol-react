@@ -4,37 +4,45 @@ import ol from 'openlayers'
 import OLContainer from '../ol-container'
 
 export default class Tile extends OLContainer {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.layer = new ol.layer.Tile({
-      visible: this.props.visible
+      opacity: props.opacity,
+      visible: props.visible,
+      extend: props.extent,
+      zIndex: props.zIndex,
+      minResolution: props.minResolution,
+      maxResolution: props.maxResolution,
     })
-    this.layer.setZIndex(props.zIndex)
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       layer: this.layer
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.context.map.addLayer(this.layer)
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(newProps) {
     this.layer.setVisible(newProps.visible)
     this.layer.setZIndex(newProps.zIndex)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.context.map.removeLayer(this.layer)
   }
 }
 
 Tile.propTypes = {
+  opacity: PropTypes.number,
   visible: PropTypes.bool,
-  zIndex: PropTypes.number
+  extent: PropTypes.instanceOf(ol.Extent),
+  zIndex: PropTypes.number,
+  minResolution: PropTypes.number,
+  maxResolution: PropTypes.number
 }
 
 Tile.defaultProps = {

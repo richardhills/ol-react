@@ -13,7 +13,9 @@ export default class OLGeometry extends OLComponent {
         if (this.props.modify) {
             let interactions = this.context.map.getInteractions()
             this.interaction = new ol.interaction.Modify({
-                features: new ol.Collection([this.context.feature])
+                features: new ol.Collection([this.context.feature]),
+                //insertVertexCondition: this.props.insertVertexCondition 
+                // Note; as of 27/06/2017, insertVertexCondition is in 4.2.0 of OpenLayers, we can't upgrade yet as the @types package hasn't been updated
             })
             if (this.props.modifyStart) {
                 this.interaction.on('modifystart', this.props.modifyStart)
@@ -43,6 +45,7 @@ OLGeometry.propTypes = {
     modify: PropTypes.bool,
     modifyStart: PropTypes.func,
     modifyEnd: PropTypes.func,
+    insertVertexCondition: PropTypes.func
 }
 
 OLGeometry.contextTypes = {

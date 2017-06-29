@@ -4,9 +4,11 @@ import ol from 'openlayers';
 import OLInteraction from './ol-interaction';
 
 export default class Draw extends OLInteraction {
-  createInteraction (props) {
+  createInteraction(props) {
     return new ol.interaction.Draw({
-      type: props.type
+      type: props.type,
+      maxPoints: props.maxPoints,
+      minPoints: props.minPoints
     })
   }
 }
@@ -14,7 +16,9 @@ export default class Draw extends OLInteraction {
 Draw.propTypes = Object.assign({}, OLInteraction.propTypes, {
   drawend: PropTypes.func,
   drawstart: PropTypes.func,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  maxPoints: PropTypes.number,
+  minPoints: PropTypes.number
 })
 
 Draw.olEvents = ["drawend", "drawstart"]

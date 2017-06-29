@@ -203,13 +203,14 @@ declare namespace __OLReact {
             modify?: boolean;
             modifyStart?: (e: ol.interaction.Modify.Event) => void;
             modifyEnd?: (e: ol.interaction.Modify.Event) => void;
+            insertVertexCondition?: (e: ol.MapBrowserEvent) => boolean
         }
         export class OLGeometry<OLGeometryProps, S> extends OLComponent<OLGeometryProps, S> { }
 
-        interface LineStringProps {
+        interface LineStringProps extends OLGeometryProps {
             children?: number[][];
         }
-        export class LineString extends OLComponent<LineStringProps, any> {
+        export class LineString extends OLGeometry<LineStringProps, any> {
         }
 
         interface PolygonProps extends OLGeometryProps {
@@ -284,6 +285,8 @@ declare namespace __OLReact {
             drawend?: Function;
             drawstart?: Function;
             type: string;
+            maxPoints?: number;
+            minPoints?: number;
         }
         export class Draw extends OLInteraction<DrawProps, any> { }
 
@@ -334,26 +337,30 @@ declare namespace __OLReact {
     }
 
     export namespace layer {
-        interface ImageProps {
-            visible?: boolean;
-            zIndex?: number;
+        interface LayerProps {
+            opacity?: number
+            source?: ol.source.Source
+            visible?: boolean
+            extent?: ol.Extent
+            zIndex?: number
+            minResolution?: number
+            maxResolution?: number
+        }
+
+        interface ImageProps extends LayerProps {
         }
         export class Image extends OLContainer<ImageProps, any> {
         }
 
-        interface TileProps {
-            visible?: boolean;
-            zIndex?: number;
+        interface TileProps extends LayerProps {
         }
         export class Tile extends OLContainer<TileProps, any> {
         }
 
-        interface VectorProps {
+        interface VectorProps extends LayerProps {
             updateWhileAnimating?: boolean;
             updateWhileInteracting?: boolean;
             style?: ol.style.Style | Object | ol.style.Style[] | Object[];
-            visible?: boolean;
-            zIndex?: number;
         }
         export class Vector extends OLContainer<VectorProps, any> {
         }
