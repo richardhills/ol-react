@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react'
 import ol from 'openlayers'
-import OLContainer from '../ol-container'
-import { buildLayerProps, baseLayerPropTypes } from './'
+import OLLayer from './ol-layer';
 
-export default class Image extends OLContainer {
+export default class Image extends OLLayer {
   constructor(props) {
     super(props)
 
-    let layerProps = buildLayerProps(props)
+    let layerProps = this.buildLayerProps(props)
 
     this.layer = new ol.layer.Image({
       ...layerProps,
@@ -36,7 +35,7 @@ export default class Image extends OLContainer {
 }
 
 Image.propTypes = {
-  ...baseLayerPropTypes
+
 }
 
 Image.defaultProps = {

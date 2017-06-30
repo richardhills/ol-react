@@ -345,6 +345,10 @@ declare namespace __OLReact {
             zIndex?: number
             minResolution?: number
             maxResolution?: number
+            selectable?: boolean
+            onSelect?: (event: ol.interaction.Select.Event) => void
+            hoverable?: boolean
+            onHover?: (event: ol.interaction.Select.Event) => void
         }
 
         interface ImageProps extends LayerProps {
