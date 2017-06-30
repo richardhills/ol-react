@@ -2,21 +2,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLContainer from '../ol-container';
+import { buildLayerProps, baseLayerPropTypes } from './'
 import { buildStyle } from '../style';
 
 export default class Vector extends OLContainer {
   constructor(props) {
     super(props)
+
+    let layerProps = buildLayerProps(props)
+
     this.layer = new ol.layer.Vector({
+      ...layerProps,
+      style: buildStyle(this.props.style),
       updateWhileAnimating: props.updateWhileAnimating,
       updateWhileInteracting: props.updateWhileInteracting,
-      style: buildStyle(this.props.style),
-      opacity: props.opacity,
-      visible: props.visible,
-      extend: props.extent,
-      zIndex: props.zIndex,
-      minResolution: props.minResolution,
-      maxResolution: props.maxResolution,
     })
   }
 
@@ -53,12 +52,7 @@ Vector.propTypes = {
       PropTypes.object
     ]))
   ]),
-  opacity: PropTypes.number,
-  visible: PropTypes.bool,
-  extent: PropTypes.instanceOf(ol.Extent),
-  zIndex: PropTypes.number,
-  minResolution: PropTypes.number,
-  maxResolution: PropTypes.number
+  ...baseLayerPropTypes
 }
 
 Vector.defaultProps = {

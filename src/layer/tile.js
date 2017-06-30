@@ -2,17 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react'
 import ol from 'openlayers'
 import OLContainer from '../ol-container'
+import { buildLayerProps, baseLayerPropTypes } from './'
 
 export default class Tile extends OLContainer {
   constructor(props) {
     super(props)
+
+    let layerProps = buildLayerProps(props)
+
     this.layer = new ol.layer.Tile({
-      opacity: props.opacity,
-      visible: props.visible,
-      extend: props.extent,
-      zIndex: props.zIndex,
-      minResolution: props.minResolution,
-      maxResolution: props.maxResolution,
+      ...layerProps,
     })
   }
 
@@ -37,12 +36,7 @@ export default class Tile extends OLContainer {
 }
 
 Tile.propTypes = {
-  opacity: PropTypes.number,
-  visible: PropTypes.bool,
-  extent: PropTypes.instanceOf(ol.Extent),
-  zIndex: PropTypes.number,
-  minResolution: PropTypes.number,
-  maxResolution: PropTypes.number
+  ...baseLayerPropTypes
 }
 
 Tile.defaultProps = {
