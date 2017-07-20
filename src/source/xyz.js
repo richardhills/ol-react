@@ -16,7 +16,8 @@ export default class XYZ extends OLComponent {
 
 XYZ.propTypes = {
   url: PropTypes.string,
-  urls: PropTypes.arrayOf(PropTypes.string)
+  urls: PropTypes.arrayOf(PropTypes.string),
+  tileSize: PropTypes.arrayOf(PropTypes.number)
 }
 
 XYZ.contextTypes = {

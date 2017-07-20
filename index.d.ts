@@ -404,6 +404,7 @@ declare namespace __OLReact {
         interface XYZProps {
             url?: string;
             urls?: string[];
+            tileSize?: number[];
         }
         export class XYZ extends OLComponent<XYZProps, any> {
         }
