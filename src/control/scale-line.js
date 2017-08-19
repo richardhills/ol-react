@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -14,7 +15,7 @@ export default class ScaleLine extends OLControl {
 }
 
 ScaleLine.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  minWidth: React.PropTypes.number,
-  units: React.PropTypes.oneOf(ScaleLineUnits)
+  className: PropTypes.string,
+  minWidth: PropTypes.number,
+  units: PropTypes.oneOf(ScaleLineUnits)
 })

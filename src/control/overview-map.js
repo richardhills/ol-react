@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -18,15 +19,15 @@ export default class OverviewMap extends OLControl {
 }
 
 OverviewMap.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  collapsed: React.PropTypes.bool,
-  collapseLabel: React.PropTypes.string,
-  collapsible: React.PropTypes.bool,
-  label: React.PropTypes.node,
-  layers: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.instanceOf(ol.layer.Layer)),
-    React.PropTypes.instanceOf(ol.Collection)
+  className: PropTypes.string,
+  collapsed: PropTypes.bool,
+  collapseLabel: PropTypes.string,
+  collapsible: PropTypes.bool,
+  label: PropTypes.node,
+  layers: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.instanceOf(ol.layer.Layer)),
+    PropTypes.instanceOf(ol.Collection)
   ]),
-  tipLabel: React.PropTypes.string,
-  view: React.PropTypes.instanceOf(ol.View)
+  tipLabel: PropTypes.string,
+  view: PropTypes.instanceOf(ol.View)
 })

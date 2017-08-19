@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -14,11 +15,11 @@ export default class MousePosition extends OLControl {
 }
 
 MousePosition.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  coordinateFormat: React.PropTypes.func,
-  projection: React.PropTypes.oneOfType([
-    React.PropTypes.instanceOf(ol.proj.Projection),
-    React.PropTypes.string
+  className: PropTypes.string,
+  coordinateFormat: PropTypes.func,
+  projection: PropTypes.oneOfType([
+    PropTypes.instanceOf(ol.proj.Projection),
+    PropTypes.string
   ]),
-  undefinedHTML: React.PropTypes.string
+  undefinedHTML: PropTypes.string
 })

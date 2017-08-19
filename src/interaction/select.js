@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLInteraction from './ol-interaction';
@@ -11,8 +12,8 @@ export default class Select extends OLInteraction {
 }
 
 Select.propTypes = Object.assign({}, OLInteraction.propTypes, {
-  condition: React.PropTypes.func,
-  select: React.PropTypes.func
+  condition: PropTypes.func,
+  select: PropTypes.func
 })
 
 Select.olEvents = ["select"]

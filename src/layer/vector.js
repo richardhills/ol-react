@@ -1,66 +1,64 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
-import OLContainer from '../ol-container';
+import OLLayer from './ol-layer';
 import { buildStyle } from '../style';
 
-export default class Vector extends OLContainer {
-  constructor (props) {
+export default class Vector extends OLLayer {
+  constructor(props) {
     super(props)
+
+    let layerProps = this.buildLayerProps(props)
+
     this.layer = new ol.layer.Vector({
+      ...layerProps,
+      style: buildStyle(props.style),
       updateWhileAnimating: props.updateWhileAnimating,
       updateWhileInteracting: props.updateWhileInteracting,
-      style: buildStyle(this.props.style),
-      visible: this.props.visible
     })
-    this.layer.setZIndex(props.zIndex)
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       layer: this.layer,
       map: this.context.map
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
+    super.componentDidMount()
     this.context.map.addLayer(this.layer)
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(newProps) {
+    super.componentWillReceiveProps(newProps)
     this.layer.setStyle(buildStyle(newProps.style));
-    this.layer.setVisible(newProps.visible)
-    this.layer.setZIndex(newProps.zIndex)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
+    super.componentWillUnmount()
     this.context.map.removeLayer(this.layer)
   }
 }
 
 Vector.propTypes = {
-  updateWhileAnimating: React.PropTypes.bool,
-  updateWhileInteracting: React.PropTypes.bool,
-  style: React.PropTypes.oneOfType([
-    React.PropTypes.instanceOf(ol.style.Style),
-    React.PropTypes.object,
-    React.PropTypes.arrayOf(React.PropTypes.oneOfType([
-      React.PropTypes.instanceOf(ol.style.Style),
-      React.PropTypes.object
+  updateWhileAnimating: PropTypes.bool,
+  updateWhileInteracting: PropTypes.bool,
+  style: PropTypes.oneOfType([
+    PropTypes.instanceOf(ol.style.Style),
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.instanceOf(ol.style.Style),
+      PropTypes.object
     ]))
-  ]),
-  visible: React.PropTypes.bool,
-  zIndex: React.PropTypes.number
-}
-
-Vector.defaultProps = {
-  visible: true
+  ])
 }
 
 Vector.contextTypes = {
-  map: React.PropTypes.instanceOf(ol.Map)
+  map: PropTypes.instanceOf(ol.Map)
 }
 
 Vector.childContextTypes = {
-  layer: React.PropTypes.instanceOf(ol.layer.Vector),
-  map: React.PropTypes.instanceOf(ol.Map)
+  layer: PropTypes.instanceOf(ol.layer.Vector),
+  map: PropTypes.instanceOf(ol.Map)
 }

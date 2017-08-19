@@ -3,10 +3,10 @@ import React from 'react';
 import ol from 'openlayers';
 import OLComponent from '../ol-component';
 
-export default class MapQuest extends OLComponent {
+export default class XYZ extends OLComponent {
   constructor(props) {
     super(props);
-    this.source = new ol.source.MapQuest(this.props);
+    this.source = new ol.source.XYZ(this.props);
   }
 
   componentDidMount() {
@@ -14,10 +14,12 @@ export default class MapQuest extends OLComponent {
   }
 }
 
-MapQuest.propTypes = {
-  layer: PropTypes.string.isRequired
+XYZ.propTypes = {
+  url: PropTypes.string,
+  urls: PropTypes.arrayOf(PropTypes.string),
+  tileSize: PropTypes.arrayOf(PropTypes.number)
 }
 
-MapQuest.contextTypes = {
+XYZ.contextTypes = {
   layer: PropTypes.instanceOf(ol.layer.Base)
 }

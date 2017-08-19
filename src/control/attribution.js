@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
 import OLControl from './ol-control';
@@ -16,10 +17,10 @@ export default class Attribution extends OLControl {
 }
 
 Attribution.propTypes = Object.assign({}, OLControl.propTypes, {
-  className: React.PropTypes.string,
-  collapsed: React.PropTypes.bool,
-  collapseLabel: React.PropTypes.string,
-  collapsible: React.PropTypes.bool,
-  label: React.PropTypes.node,
-  tipLabel: React.PropTypes.string
+  className: PropTypes.string,
+  collapsed: PropTypes.bool,
+  collapseLabel: PropTypes.string,
+  collapsible: PropTypes.bool,
+  label: PropTypes.node,
+  tipLabel: PropTypes.string
 })

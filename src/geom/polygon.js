@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ol from 'openlayers';
-import OLComponent from '../ol-component';
+import OLGeometry from './ol-geometry';
 
-export default class Polygon extends OLComponent {
+export default class Polygon extends OLGeometry {
   constructor(props) {
     super(props);
     this.geometry = new ol.geom.Polygon();
@@ -10,11 +11,7 @@ export default class Polygon extends OLComponent {
   }
 
   updateFromProps(props) {
-    this.geometry.setCoordinates([this.props.children]);
-  }
-
-  componentDidMount() {
-    this.context.feature.setGeometry(this.geometry);
+    this.geometry.setCoordinates([props.children]);
   }
 
   componentWillReceiveProps(newProps) {
@@ -27,11 +24,12 @@ export default class Polygon extends OLComponent {
 }
 
 Polygon.propTypes = {
-  children: React.PropTypes.arrayOf(
-    React.PropTypes.arrayOf(React.PropTypes.number)
+  children: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.number)
   ).isRequired,
 }
 
 Polygon.contextTypes = {
-  feature: React.PropTypes.instanceOf(ol.Feature)
+  feature: PropTypes.instanceOf(ol.Feature),
+  map: PropTypes.instanceOf(ol.Map),
 }
