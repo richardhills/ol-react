@@ -70,7 +70,7 @@ declare namespace __OLReact {
     }
 
     export class View extends OLComponent<ViewProps, any> {
-        animate(options: any);
+        animate(options: any) : void;
         fit(geometry: ol.geom.Geometry | ol.Extent, size: ol.Size, options?: Object): void;
     }
 
@@ -87,10 +87,6 @@ declare namespace __OLReact {
     }
 
     export class Overlay extends OLComponent<OverlayProps, any> {
-    }
-
-    namespace OLProps {
-        export function Extent();
     }
 
     export namespace control {
