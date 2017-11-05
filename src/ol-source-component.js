@@ -16,6 +16,12 @@ export default class OLSourceComponent extends OLComponent {
     this.context.layer.setSource(this.source)
   }
 
+  getChildContext() {
+    return {
+      source: this.source
+    }
+  }
+
   _createSourceFromProps(props) {
     throw new Error("_createSouceFromProps() must be overridden in subclasses")
   }
