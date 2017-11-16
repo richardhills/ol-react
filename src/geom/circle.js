@@ -34,11 +34,11 @@ export default class Circle extends OLComponent {
   }
 }
 
-Point.propTypes = {
+Circle.propTypes = {
   children: React.PropTypes.arrayOf(PropTypes.number).isRequired,
   radius: React.PropTypes.number.isRequired
 }
 
-Point.contextTypes = {
+Circle.contextTypes = {
   feature: React.PropTypes.instanceOf(ol.Feature)
 }
