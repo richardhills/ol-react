@@ -21,8 +21,8 @@ export default class Polygon extends OLComponent {
     this.updateFromProps(newProps);
   }
 
-  render() {
-    return false;
+  componentWillUnmount() {
+    this.context.feature.setGeometry(undefined);
   }
 }
 
