@@ -32,6 +32,12 @@ export default class Map extends React.Component {
     this.map.setTarget(undefined)
   }
 
+  focus () {
+    const viewport = this.map.getViewport()
+    viewport.tabIndex = 0
+    viewport.focus()
+  }
+
   getChildContext () {
     return {
       map: this.map
@@ -51,10 +57,8 @@ export default class Map extends React.Component {
     )
   }
 
-  focus () {
-    const viewport = this.map.getViewport()
-    viewport.tabIndex = 0
-    viewport.focus()
+  updateSize () {
+    this.map.updateSize()
   }
 }
 
